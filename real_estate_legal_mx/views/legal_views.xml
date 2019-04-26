@@ -1,0 +1,63 @@
+<odoo>
+
+         <record id="view_company_real_state_form" model="ir.ui.view">
+            <field name="name">res.company.form.real_state.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+              <notebook position="inside">
+              <page string="Legal Info" >
+              <group>             
+              <group string="Constitutive Act">
+              <field name="notary_public" />
+              <field name="deed" />
+              <field name="deed_date" />
+              <field name="deed_city"/>
+              <field name="deed_state_id"/>
+              <field name="deed_country_id"/>
+              <field name="deed_folio"/>
+              <field name="deed_folio_date"/>
+              </group>
+              <group string="Legal Representative">   
+              <field name="lr_notary_public" />
+              <field name="lr_deed" />
+              <field name="lr_deed_date" />
+              <field name="lr_deed_city"/>
+              <field name="lr_deed_state_id"/>
+              <field name="lr_deed_country_id"/>
+              <field name="lr_deed_folio"/>
+              <field name="lr_deed_folio_date"/>
+              <field name="legal_representative1" />
+             	<field name="legal_representative2" />
+             	<field name="legal_representative3" /> 
+              </group>  
+              </group>    
+              <group string="Contractual Penalty">
+              <group>
+              <group> <field name="contractual_penalty" /></group>
+              <group></group>
+              </group>
+             </group> <group>
+              <group  string="Company Default" >
+              <field name="days_money_back1" />
+              <field name="penality_money_back1" />
+               </group>
+              <group  string="Client Default" >
+              <field name="days_money_back2" />
+              <field name="penality_money_back2" />
+              </group>
+              </group>  
+              <group string="Registration Support Agreement" >
+              <group>
+              <field name="contract_verification" />
+ 				<field name="contract_verification_date" /></group>
+              <group>
+              <field name="contract_verification_ref" />
+              </group>
+              </group>    	
+             </page>
+             </notebook>
+             </field>
+           </record>
+ 
+</odoo>
