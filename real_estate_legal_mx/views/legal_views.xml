@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
               <notebook position="inside">
-              <page string="Legal Info" >
+              <page string="Legal Info" groups="legal.user">
               <group>             
               <group string="Constitutive Act">
               <field name="notary_public" />

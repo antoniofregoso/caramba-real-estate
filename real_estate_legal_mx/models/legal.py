@@ -30,13 +30,16 @@ class LegalSale(models.Model):
     type = fields.Selection([('sale','Real Estate Purchase-Sale Contract'), ('rental','Real Estate Rental Contract'),('exclusive','Real Estate Brokerage Agreement- Exclusive'), ('no-exclusive','Real Estate Brokerage Agreement-No Exclusive')])
     date_order = fields.Datetime(string='Order Date', required=True, readonly=True, index=True)
     signature_date = fields.Date(string='Signature Date')
+    termination_date = fields.Date('Termination Date')
+    commission = fields.Float('Commission for sale')
     sale_order_id = fields.Many2one('sale.order', string='Sale Order', help="Reference of the sale order that generated this contract request.")
     development_id = fields.Many2one('res.partner', string='Development')
     product_id = fields.Many2one('product.product', string='Unit')
     partner_id = fields.Many2one('res.partner', string='Buyer')
     legal_representative_id = fields.Many2one('res.partner', string='Legal representative')
     tag_ids = fields.Many2many('lean_marketing.brand.tag', 'lean_marketing_brand_tags_rel', 'brand_id', 'tag_id', string='Tags') 
-    color = fields.Integer('Kanban Color Index')
+    color = fields.Integer('Kanban Color Index')    
+    sequence = fields.Integer('Sequence')
     priority = fields.Selection([('0', 'Low'),('1', 'Medium'),('2', 'High'),('3', 'Very High')], string='Priority', index=True, default='0')
     
     
