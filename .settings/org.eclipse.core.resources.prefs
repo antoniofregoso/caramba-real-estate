@@ -1,9 +1,2 @@
 eclipse.preferences.version=1
-encoding//real_estate_legal_mx/models/legal.py=utf-8
-encoding//sale_real_estate/models/__init__.py=utf-8
-encoding//sale_real_estate/models/account_invoice.py=utf-8
-encoding//sale_real_estate/models/product.py=utf-8
-encoding//sale_real_estate/models/real_estate.py=utf-8
-encoding//sale_real_estate/models/res_partner.py=utf-8
-encoding//sale_real_estate/models/sale.py=utf-8
-encoding//sale_real_estate/models/stock.py=utf-8
+encoding//product_real_state/__manifest__.py=utf-8

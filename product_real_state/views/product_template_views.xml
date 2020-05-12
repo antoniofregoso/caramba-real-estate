@@ -1,0 +1,47 @@
+<odoo>
+
+  <record id="product_template_real_state_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.real_state.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">  
+            	<page  string="Information" position="after"> 
+            		<page string="Real State">
+            			<group name="realstate"> 
+            				 <group>
+			 				  	<field name="lot"/>
+				 				 <field name="area" />
+				 				 <field name="storeys"/>
+			 				    <field name="floor"/>
+				 				 <field name="living_room"/>
+				 				 <field name="study"/>
+				 				 <field name="baths"/>
+				 				 <field name="balcony"/>
+				 				 <field name="garden"/>
+				 				 <field name="amenities"/>
+				 				 <field name="storage"/>
+				 				  <field name="service_yard"/>
+		 				 </group>   
+		 				  <group>
+			 				   <field name="kitchen"/>
+			 				  <field name="suite"/>
+			 				  <field name="beds"/>
+			 				  <field name="hbaths"/>
+			 				  <field name="terrace"/>
+			 				  <field name="roof_garden"/>
+			 				  <field name="swimming_pool"/>
+			 				  <field name="parking"/>
+			 				  <field name="service"/>
+		 				  </group>  
+						 <group>
+				 				<field name="offices"/>
+				 				<field name="common_area"/>
+		 				  	    <field name="boardrooms"/>
+		 				  </group>
+            			</group>
+            		</page>
+            	</page> 
+            </field>
+    </record>
+
+</odoo>
