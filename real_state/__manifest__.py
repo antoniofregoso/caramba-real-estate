@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Product Real State",
+    'name': "Real State",
 
-    'summary': "Add address and specific attributes of real estate to product template",
+    'summary': "Base module for real estate sales management",
 
 
 
