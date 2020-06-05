@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	 <menuitem id="real_estate_menu_root" name="Real Estate" web_icon="real_estate,static/description/icon.png"  
+	 		groups="real_estate.group_real_estate_user,real_estate.group_real_estate_manager" sequence="8"/>
+
+	<menuitem
+            id="real_estate_menu_config"
+            name="Configuration"
+            parent="real_estate_menu_root"
+            sequence="25" groups="real_estate.group_real_estate_manager"/>
+            
+	<menuitem id="real_estate_menu_report"
+            name="Reporting"
+            parent="real_estate_menu_root"
+            sequence="20"
+            groups="real_estate.group_real_estate_manager"/>
+            
+ 	<menuitem id="real_estate_menu_estates"
+            name="Estates"
+            parent="real_estate_menu_root"
+            sequence="10"
+            groups="real_estate.group_real_estate_user"/>
+            
+   <!-- Amenities -->         
+            
+             <record id="real_estate_amenitie_form" model="ir.ui.view">
+            <field name="name">real_estate.amenitie.form</field>
+            <field name="model">real_estate.amenitie</field>
+            <field name="arch" type="xml">
+                <form string="Amenitie">
+                     <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="color" required="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="real_estate_amenitie_tree" model="ir.ui.view">
+            <field name="name">real_estate.amenitie.tree</field>
+            <field name="model">real_estate.amenitie</field>
+            <field name="arch" type="xml">
+                <tree string="Amenities" editable="bottom">
+                    <field name="name"/>
+                     <field name="color" groups="base.group_no_one"/>
+                </tree>
+            </field>
+        </record>
+        
+     <record id="action_real_estate_amenitie_view_form" model="ir.actions.act_window">
+        <field name="name">Amenities</field>
+        <field name="res_model">real_estate.amenitie</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    	<menuitem id="real_estate_menu_amenities"
+            name="Amenities"
+            parent="real_estate_menu_config"
+            action="action_real_estate_amenitie_view_form"
+            sequence="2"/>
+      
+   <!-- Servoces -->   
+              <record id="real_estate_service_form" model="ir.ui.view">
+            <field name="name">real_estate.service.form</field>
+            <field name="model">real_estate.service</field>
+            <field name="arch" type="xml">
+                <form string="Service">
+                    <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="color" required="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="real_estate_service_tree" model="ir.ui.view">
+            <field name="name">real_estate.service.tree</field>
+            <field name="model">real_estate.service</field>
+            <field name="arch" type="xml">
+                <tree string="Services" editable="bottom">
+                    <field name="name"/>
+                     <field name="color" groups="base.group_no_one"/>
+                </tree>
+            </field>
+        </record>
+        
+     <record id="action_real_estate_service_view_form" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">real_estate.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    	<menuitem id="real_estate_menu_service"
+            name="Services"
+            parent="real_estate_menu_config"
+            action="action_real_estate_service_view_form"
+            sequence="3"/>
+        
+ <!-- Environment -->       
+        
+                <record id="real_estate_environment_form" model="ir.ui.view">
+            <field name="name">real_estate.environment.form</field>
+            <field name="model">real_estate.environment</field>
+            <field name="arch" type="xml">
+                <form string="Environment">
+                     <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="color" required="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="real_estate_environment_tree" model="ir.ui.view">
+            <field name="name">real_estate.environment.tree</field>
+            <field name="model">real_estate.environment</field>
+            <field name="arch" type="xml">
+                <tree string="Environment" editable="bottom">
+                    <field name="name"/>
+                     <field name="color" groups="base.group_no_one"/>
+                </tree>
+            </field>
+        </record>
+        
+     <record id="action_real_estate_environment_view_form" model="ir.actions.act_window">
+        <field name="name">Environments</field>
+        <field name="res_model">real_estate.environment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    	<menuitem id="real_estate_menu_environment"
+            name="Environments"
+            parent="real_estate_menu_config"
+            action="action_real_estate_environment_view_form"
+            sequence="4"/>
+        
+  <!-- Type -->     
+        
+                <record id="real_estate_type_form" model="ir.ui.view">
+            <field name="name">real_estate.type.form</field>
+            <field name="model">real_estate.type</field>
+            <field name="arch" type="xml">
+                <form string="Real Estate Type">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="real_estate_type_tree" model="ir.ui.view">
+            <field name="name">real_estate.type.tree</field>
+            <field name="model">real_estate.type</field>
+            <field name="arch" type="xml">
+                <tree string="Real Estate Types">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+     <record id="action_real_estate_type_view_form" model="ir.actions.act_window">
+        <field name="name">Real Estate Types</field>
+        <field name="res_model">real_estate.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    	<menuitem id="real_estate_menu_type"
+            name="Real Estate Types"
+            parent="real_estate_menu_config"
+            action="action_real_estate_type_view_form"
+            sequence="1"/>
+            
+            
+     <!-- Real Estate Development -->
+     
+     
+        <record id="real_state_develpment_view_form" model="ir.ui.view">
+            <field name="name">real_estate.development.form</field>
+            <field name="model">real_estate.development</field>
+            <field name="arch" type="xml">
+                <form >
+                	<header>
+                		 <field name="state" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}" />
+                	</header>
+                	<sheet>
+                	 	<div class="oe_button_box" name="button_box">
+                	 		<field name="website_published" widget="website_publish_button" string="Published"/>
+                	 	</div>
+                		<div class="oe_title">
+                			<h1><field name="name" placeholder="Name"/></h1>
+                		</div>
+                			<group>
+                				<group>
+                					<field name="street"/>
+                					<field name="street2"/>
+                					<field name="city"/>
+                					<field name="state_id"/>
+                					<field name="country_id"/>
+                					<field name="latitude"/>
+                					<field name="longitude"/>
+                				</group>
+                				<group>
+                					<field name="priority" widget="priority"/>
+                					<field name="offer"/>
+                					<field name="amenities_ids"/>
+                					<field name="services_ids"/>
+                					<field name="user_id"/>
+                				</group>
+                			</group>
+                		 <notebook>
+                		 	<page string="Description">
+                		 	<field name="description" type="html" nolabel="1"/>
+                		 	</page>
+                		 </notebook>
+                	</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                
+                </form>
+             </field>
+        </record>
+        
+        <record model="ir.ui.view" id="real_state_develpment_view_tree">
+            <field name="name">real_estate.development.tree</field>
+            <field name="model">real_estate.development</field>
+            <field name="arch" type="xml">
+                <tree string="Real Estate Development" decoration-bf="message_needaction==True" decoration-danger="state=='stopped'" decoration-muted="state=='cancel'">
+                    <field name="name"/>                    
+                    <field name="state"/>
+                    <field name="message_needaction" invisible="1"/>
+                </tree>
+             </field>
+        </record>
+        
+        <record id="real_state_develpment_view_kanban" model="ir.ui.view">
+            <field name="name">real_estate.development.kanban</field>
+            <field name="model">real_estate.development</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+            	<kanban default_group_by="state" class="o_kanban_small_column">            		
+                    <field name="name"/>
+                    <field name="priority"/>
+                    <field name="state"/>
+                    <field name="sequence"/>
+                    <field name="country_id"/>
+                    <field name="state"/>
+                    <field name="type_id"/>
+                    <field name="message_needaction_counter"/>
+                    <field name="user_id"/>
+                     <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+					<templates>
+						<t t-name="kanban-box">
+							<div t-attf-class="oe_kanban_content oe_kanban_global_click">
+								<div>
+                                    <strong class="o_kanban_record_title"><span><field name="name"/></span></strong>
+                                </div>
+								<div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                    	<field name="priority" widget="priority" groups="base.group_user"/>
+                                    	<t t-if="record.message_needaction_counter.raw_value">
+                                            <span role="alert" class="oe_kanban_mail_new" title="Unread Messages"><i class="fa fa-comments" aria-label="Messages" role="img"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                        </t>
+                                        <div class="o_kanban_inline_block">
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <img t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)" t-att-title="record.user_id.value" t-att-alt="record.user_id.value" class="oe_kanban_avatar float-right"/>
+                                    </div>
+								</div>
+							</div>
+						</t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+            
+   <record id="action_real_state_develpment_view_form" model="ir.actions.act_window">
+        <field name="name">Development</field>
+        <field name="res_model">real_estate.development</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+    
+    	<menuitem id="real_state_develpment_menu"
+            name="Development"
+            parent="real_estate_menu_estates"
+            action="action_real_state_develpment_view_form"
+            sequence="1"/>       
+           
+
+</odoo>

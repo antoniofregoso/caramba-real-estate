@@ -1,42 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <record id="product_template_real_state_template_form_view" model="ir.ui.view">
-            <field name="name">product.template.real_state.form</field>
+  <record id="product_template_real_estate_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.real_estate.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">  
-            	<page  string="Information" position="after"> 
-            		<page string="Real State">
-            			<group name="realstate"> 
+            	<page  name="general_information" position="after"> 
+            		<page string="Real Estate" groups="real_estate.group_real_estate_user,real_estate.group_real_estate_manager">
+	            		<group>
+	            			<group>
+	            				<field name="development_id"/>
+	            			</group>
+	            			<group>
+	            				<field name="environments_ids" widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}"/>
+	            			</group>
+	            		</group>
+            			<group > 
             				 <group>
 			 				  	<field name="lot"/>
 				 				 <field name="area" />
-				 				 <field name="storeys"/>
 			 				    <field name="floor"/>
-				 				 <field name="living_room"/>
-				 				 <field name="study"/>
-				 				 <field name="baths"/>
-				 				 <field name="balcony"/>
-				 				 <field name="garden"/>
-				 				 <field name="amenities"/>
-				 				 <field name="storage"/>
-				 				  <field name="service_yard"/>
+				 				 <field name="storeys"/>
 		 				 </group>   
 		 				  <group>
-			 				   <field name="kitchen"/>
-			 				  <field name="suite"/>
-			 				  <field name="beds"/>
+			 				   <field name="beds"/>
+			 				  <field name="baths"/>
 			 				  <field name="hbaths"/>
-			 				  <field name="terrace"/>
-			 				  <field name="roof_garden"/>
-			 				  <field name="swimming_pool"/>
 			 				  <field name="parking"/>
-			 				  <field name="service"/>
 		 				  </group>  
 						 <group>
-				 				<field name="offices"/>
-				 				<field name="common_area"/>
-		 				  	    <field name="boardrooms"/>
+				 				<field name="balcony"/>
+				 				<field name="terrace"/>
+		 				  	    <field name="service_yard"/>
+		 				  </group>
+		 				  <group>
+				 				<field name="garden"/>
+				 				<field name="roof_garden"/>
+		 				  	    <field name="storage"/>
 		 				  </group>
             			</group>
             		</page>

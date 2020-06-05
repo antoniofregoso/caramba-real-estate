@@ -2,24 +2,27 @@
 {
     'name': "Real State",
 
-    'summary': "Base module for real estate sales management",
+    'summary': "Base module for real estate management",
 
 
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "Antonio Fregoso",
+    'website': "https://antoniofregoso.com",
 
-    'category': 'Real State',
+    'category': 'Real Estate',
     'version': '13.0.0.0.0',
 
     'depends': ['product'],
 
-    # always loaded
+
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/real_estate_security.xml',
+        'security/ir.model.access.csv',
         'views/product_template_views.xml',
+        'views/real_estate_views.xml',
+        'data/real_estate_data.xml'
     ],
-    # only loaded in demonstration mode
+
     'demo': [
         'demo/demo.xml',
     ],
