@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<template id="real_state_development_content" name="Real Estate Development Content">  
+	<t t-call="website.layout">
+		 <section class="pt32 pb32 container">
+            <div class="row s_nb_column_fixed">
+                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                    <h1 class="s_title_default"><font style="font-size: 32px;"><t t-esc="development.name"/></font></h1>
+                	 <h2 t-if="development.summary" t-esc="development.summary"/>
+                </div>
+            </div>
+          <div t-field="development.website_header" class="oe_structure" id="development-header" />  
+    </section>
+     <section class="pt32 pb32 container">
+    <div class="row">
+    <div class="col-md-8 col-sm-12">
+    		<div class="row">
+    			<div class="col-md-6">
+    			<h4 t-if="development.offer=='sale'" class="text-left"><t t-esc="web_values['state']" /></h4>
+    				 <h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":website.currency_id}'/></h2>
+    				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":website.currency_id}'/></h2>
+    			</div>
+    			<div class="col-md-6 text-right">
+    				<h4><t t-esc="web_values['offer']" /></h4>
+	    			<h2  t-esc="web_values['type']"/>
+	    			<h4><small>Delivery: </small>
+	    			<t t-if="development.immediate_delivery">Inmediate</t>
+	    			<t t-else="" t-options="{'widget': 'date'}"><t t-esc="development.delivery_date" /></t>
+	    			</h4>
+    			
+    			</div>
+    		</div>
+    		
+    		<div class="row ">
+    			<div class="col-md-6">
+    				<address>
+    					<t t-if="development.street"><t t-esc="development.street"/></t>, <t t-if="development.street2"><t t-esc="development.street2"/></t><br />
+    					<t t-if="development.city"><t t-esc="development.city"/></t>, <t t-if="development.state_id"><t t-esc="development.state_id.name"/></t><br />
+    					<t t-if="development.country_id"><t t-esc="development.country_id.name"/></t>, <t t-if="development.zip"><t t-esc="development.zip"/></t>
+    					
+    				</address>    				
+    			</div>
+    			<div class="col-md-6 text-right">
+    			<t t-if="development.amenities_ids">
+    			 <h3>Amenities</h3>
+			     <t t-foreach="development.amenities_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+			     <t t-if="development.amenities_ids">
+    			 <h3>Services</h3>
+			     <t t-foreach="development.services_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+    			</div>
+    		</div>
+		    <div class="row">
+		    	<div class="col-12">
+		    		<div t-raw="development.description"/>
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="re-swiper-container">
+		    		<div class="swiper-wrapper">
+		    			 <t t-foreach="development.units_ids" t-as="unit">
+		    			 	 <div class="swiper-slide re-swiper-slide card">
+		    			 	 	<div class="card-header">
+		    			 	 		<h4 class="card-title " t-esc="unit.name" />
+	    	 						<p class="card-text" ><spam t-esc="unit.description_sale"/></p>
+	    	 						<div class="re-price-container">
+		    	 						<div class="re-price">
+						    	 			<span class="re-money-sign">$</span>
+						    	 			<span class="re-money" t-esc="'{:,}'.format(int(unit.list_price))"/>
+						    	 			<span class="re-cents" t-raw="'.' + str(round(unit.list_price - int(unit.list_price), 2)).replace('0.','').ljust(2,'0')"/>
+						    	 		</div>
+					    	 		</div>
+		    			 	 	</div>
+		    			 	 	 <ul class="list-group list-group-flush">
+								    <li class="list-group-item pl-5">Surface: <t t-esc="unit.area" /> m2</li>
+								    <li class="list-group-item pl-5">Bedrooms: <t t-esc="unit.beds" /></li>
+								    <li t-if="unit.master_suite>0" class="list-group-item pl-5">Master Suite: <t t-esc="unit.master_suite" /></li>
+								    <li t-if="unit.parking>0" class="list-group-item pl-5">Parking Places: <t t-esc="unit.parking" /></li>
+								  </ul>
+		    			 	 		 <a t-att-href="unit.real_estate_website_url" class="btn btn-primary fixed-bottom">See information</a>
+		    			 	 </div>
+		    			 </t>
+		    		</div>
+		    		<div class="swiper-pagination"></div>
+		    	</div>
+		    </div>
+    </div>
+     <div class="col-md-4 col-sm-12">
+     <div id="card-share" class="card mb32 shadow-sm" style="width: 18rem;">
+			  <div class="card-header">
+			    Share
+			  </div>
+			   <div t-attf-class="s_share #{_classes} text-center">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="s_share_facebook #{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-facebook #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="s_share_twitter #{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-twitter #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="s_share_linkedin #{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-linkedin #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="s_share_email #{_link_classes}">
+            <i t-attf-class="fa fa-1x fa-envelope #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+    </div>
+		</div>
+     	<div id="card-contact" class="card mb32 shadow-sm" style="width: 18rem;">
+			  <div class="card-header">
+			    Your Real Estate Agent
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item"><t t-esc="development.user_id.name" /></li>
+			    <t t-if="development.user_id.email"><li class="list-group-item"><span class="fa fa-1x fa-envelope-o"></span> <a t-att-href="'mailto: ' + development.user_id.email"><t t-esc="development.user_id.email"/></a></li></t>
+			    <t t-if="development.user_id.mobile"><li class="list-group-item"><span class="fa fa-1x fa-whatsapp"></span> <a t-att-href="'https://wa.me/' + development.user_id.mobile.strip()"><t t-esc="development.user_id.mobile"/></a></li></t>
+			    <t t-if="development.user_id.phone"><li class="list-group-item"><span class="fa fa-1x fa-phone"></span> <a t-att-href="'tel: ' + development.user_id.phone"><t t-esc="development.user_id.phone"/></a></li></t>
+			  </ul>
+		</div>
+    
+    	<div id="card-form" class="card mb32 shadow-sm" style="width: 18rem;">
+			  <div class="card-header">
+			    I'm interested
+			  </div>
+			   <div class="card-body">
+			  <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form container-fluid mt32 px-2" enctype="multipart/form-data" >
+                     <div class="form-group">
+    					 <input type="text" class="form-control o_website_form_input" placeholder="Your Name" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	 <input type="text" class="form-control o_website_form_input" placeholder="Phone Number" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	<input type="text" class="form-control o_website_form_input" placeholder="Email" name="email_from" t-att-value="request.params.get('email_from', '')" required="" />
+                     </div>
+                      <div class="form-group">
+                      	 <input type="text" class="form-control o_website_form_input" t-att-value="development.name" name="name" required=""/>
+                      </div>
+                      <button class="btn btn-primary btn-lg o_website_form_send o_default_snippet_text">Send</button>
+                      <span id="o_website_form_result"/>
+              </form>   
+              </div>    
+	</div>
+     </div>
+   </div>
+   </section>
+    </t>
+     <script>
+     var swiper = new Swiper('.re-swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            initialSlide: 3,
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows : true,
+            },
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+              renderBullet: function (index, className) {
+	          return '<span class="' + className + '">' + (index + 1) + '</span>';
+	        },
+            },
+          });
+  </script>
+</template>
+
+</odoo>

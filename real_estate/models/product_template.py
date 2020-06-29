@@ -1,18 +1,27 @@
 
 
 from odoo import api, fields, models
+from odoo.addons.http_routing.models.ir_http import slug
 
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
     
+    def _compute_real_estate_website_url(self):
+        super(ProductTemplate, self)._compute_real_estate_website_url()
+        for unit in self:
+            unit.website_url = "/real-estate/development/%s/unit/%s" % slug(unit.development_id), slug(unit)
+    
+    type = fields.Selection(selection_add=[('estate', 'Real Estate')], tracking=True)
     development_id = fields.Many2one('real_estate.development', 'Development', select=True)
-    area = fields.Float('Builded surface (m2)')
-    lot = fields.Float('Total area: (m2)')
+    real_estate_type_id = fields.Many2one('real_estate.type', 'Type')  
+    area = fields.Float('Builded Surface (m2)')
+    lot = fields.Float('Total Area: (m2)')
     floor = fields.Integer('Floor', help="Floor in which the property is located.")
     storeys = fields.Integer('Storeys', help="Number of floors the property has.")
     beds = fields.Integer('Bedrooms')
+    master_suite = fields.Integer('Master Suite')
     baths = fields.Integer('Bathrooms')
     hbaths = fields.Integer('Half Bathrooms')
     parking = fields.Integer('Parking Places')
@@ -22,8 +31,24 @@ class ProductTemplate(models.Model):
     roof_garden = fields.Float('Roof Garden (m2)')
     storage = fields.Float('Storage (m3)')
     service_yard = fields.Float('Service Yard (m2)')
+    real_estate_website_url = fields.Char(compute='_compute_real_estate_website_url()')
     environments_ids = fields.Many2many('real_estate.environment', 'product_real_state_environmen_rel',
                                         'product_id', 'envirnment_id', string = 'Environments')
+    real_estate_sequence = fields.Integer('Website Sequence', help="Determine the display order in the Website E-commerce",
+                                      default=lambda self: self._default_real_estate_sequence(), copy=False)
+    
+    def _default_real_estate_sequence(self):
+        ''' We want new product to be the last (highest seq).
+        Every product should ideally have an unique sequence.
+        Default sequence (10000) should only be used for DB first product.
+        As we don't resequence the whole tree (as `sequence` does), this field
+        might have negative value.
+        '''
+        self._cr.execute("SELECT MAX(real_estate_sequence) FROM %s" % self._table)
+        max_sequence = self._cr.fetchone()[0]
+        if max_sequence is None:
+            return 10000
+        return max_sequence + 5
 
     
     
