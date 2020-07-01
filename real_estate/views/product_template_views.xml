@@ -33,7 +33,10 @@
             <field name="name">product.template.real_estate.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
-            <field name="arch" type="xml">  
+            <field name="arch" type="xml">              	
+        <!--    <div name="button_box" position="inside">
+                <field name="is_published" widget="website_redirect_button" attrs="{'invisible': [('sale_ok','=',False)]}"/>
+            </div>  --> 
             	<page  name="general_information" position="after"> 
             		<page string="Real Estate" groups="real_estate.group_real_estate_user,real_estate.group_real_estate_manager">
 	            		<group>
@@ -41,6 +44,7 @@
 	            				<field name="development_id"/>
 	            			</group>
 	            			<group>
+	            				<field name="real_estate_type_id"/>
 	            			</group>
 	            		</group>
             			<group > 

@@ -45,6 +45,7 @@ class RealEstateDevelopment(models.Model):
         for estate in self:
             estate.website_url = "/real-estate/development/%s" % slug(estate)
 
+
     name = fields.Char('Name', required=True, translate=True)
     summary = fields.Char('Summary', translate=True)
     development_type = fields.Selection([('residential','Residential Real Estate'), ('commercial','Commercial Real Estate'), ('mixed','Mixed Real Estate'), ('industrial','Industrial Real Estate'), ('land','Land')], default='residential', required=True)
@@ -74,7 +75,8 @@ class RealEstateDevelopment(models.Model):
     units_ids = fields.One2many('product.template', 'development_id', string='Unit')  
     price_from = fields.Float('From', default=10000000.00)
     price_to = fields.Float('To', default=20000000.00)
-    
+    currency_id = fields.Many2one('res.currency', required=True)
+       
     def _expand_states(self, states, domain, order):
         return ['draft', 'onpresale', 'onsale', 'sold', 'stopped']
     

@@ -234,6 +234,7 @@
                 					<field name="zip"/>
                 					<field name="latitude"/>
                 					<field name="longitude"/>
+                					<field name="currency_id"/>
                 				</group>
                 				<group>
                 					<field name="priority" widget="priority"/>
@@ -249,12 +250,10 @@
                 				</group>
                 			</group>
                 		 <notebook>
-                		 	<page string="Description">
-                		 	<field name="description" type="html" nolabel="1"/>
-                		 	</page>
-                		 	<page string="Units">
+                		 	<page string="Units"  autofocus="autofocus">
                 		 		<field name="units_ids" mode="kanban" context="{'default_development_id': active_id, 'default_user_id': user_id, 'default_type': 'estate'}">
-                		 			<kanban>                		 				
+                		 			<kanban>    
+                		 				<field name="id"/>            		 				
                                     	<field name="name"/>
                                     	<field name="type"/>
                                     	<templates>

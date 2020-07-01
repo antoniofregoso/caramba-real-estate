@@ -12,7 +12,7 @@
     'category': 'Real Estate',
     'version': '13.0.0.0.0',
 
-    'depends': ['website_crm', 'product'],
+    'depends': ['website_crm', 'website_sale'],
 
 
     'data': [
