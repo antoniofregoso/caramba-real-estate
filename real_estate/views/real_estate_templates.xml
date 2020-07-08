@@ -83,7 +83,7 @@
 		    			 	 	<div class="re-corner-ribbon top-right sticky bg-warning shadow">Sold</div>
 		    			 	 	</t>
 		    			 	 	<h2 class="card-title " t-esc="unit.name" />
-		    			 	 		<h4 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h4>
+		    			 	 		<h3 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h3>
 	    	 						<div class="re-price-container">
 		    	 						<div class="re-price">
 						    	 			<span class="re-money-sign">$</span>
