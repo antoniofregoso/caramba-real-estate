@@ -73,7 +73,7 @@
     			 <div t-field="development.description" class="oe_structure" name="development-description" />
     		</section>
     		<!-- Start Swipper -->
-    		<section id="re-units" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation">
+    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation">
 		    <div class="swiper-container re-units" id="swiper-container" >
 		    	<div class="swiper-wrapper">
 		    		<t t-foreach="development.units_ids" t-as="unit">
