@@ -83,7 +83,7 @@
 		    			 	 	<div class="re-corner-ribbon top-right sticky bg-warning shadow">Sold</div>
 		    			 	 	</t>
 		    			 	 	<h2 class="card-title " t-esc="unit.name" />
-		    			 	 		<p class="card-text" ><spam t-esc="unit.description_sale"/></p>
+		    			 	 		<h4 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h4>
 	    	 						<div class="re-price-container">
 		    	 						<div class="re-price">
 						    	 			<span class="re-money-sign">$</span>
@@ -367,7 +367,7 @@
                      	<input type="text" class="form-control o_website_form_input" placeholder="Email" name="email_from" t-att-value="request.params.get('email_from', '')" required="" />
                      </div>
                       <div class="form-group">
-                      	 <input type="text" class="form-control o_website_form_input" t-att-value="development.name" name="name" required=""/>
+                      	 <input type="text" class="form-control o_website_form_input" t-att-value="development.name + ': ' + unit.name" name="name" required=""/>
                       </div>
                       <button class="btn btn-primary btn-lg o_website_form_send o_default_snippet_text">Send</button>
                       <span id="o_website_form_result"/>
