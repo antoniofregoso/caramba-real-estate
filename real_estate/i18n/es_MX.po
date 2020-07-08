@@ -859,7 +859,7 @@ msgstr "Lugares de Estacionamiento"
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_state_development_content
 msgid "Parking Places:"
-msgstr "Lugares de Estacionamiento:"
+msgstr "Estacionamiento:"
 
 #. module: real_estate
 #: model:real_estate.amenitie,name:real_estate.real_estate_amenitie_opt_12
