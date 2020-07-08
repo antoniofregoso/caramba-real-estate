@@ -39,17 +39,17 @@ class WebsiteRealEstate(http.Controller):
         return request.render("real_estate.real_state_development_content", values)
     
     @http.route([
-        '''/real-estate/development/<model("real_estate.development", "[('website_id', 'in', (False, current_website_id))]"):development>/unit/<model("product.template", "[('development_id','=',development[0])]"):product_template>''',
+        '''/real-estate/development/<model("real_estate.development"):development>/unit/<model("product.template"):unit>'''
     ], type='http', auth="public", website=True)
-    def unit(self, development, product_template, tag_id=None, page=1, enable_editor=None, **post):
+    def unit(self, development, unit, **opt):
         development = request.env['real_estate.development'].sudo().browse(development.id)
-        unit = request.env['product.template'].sudo().browse(product_template.id)
+        unit = request.env['product.template'].sudo().browse(unit.id)[0]
         web_values = {'type':  self.get_web_value(development.development_type)}
         web_values['state'] =  self.get_web_value(development.state)
         web_values['offer'] =  self.get_web_value(development.offer)
         values = {
             'development':development,
-            'unit': product_template,
+            'unit': unit,
             'web_values': web_values
             }
         return  request.render("real_estate.real_state_unit_content", values)

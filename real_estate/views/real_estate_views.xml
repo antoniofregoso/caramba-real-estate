@@ -235,6 +235,7 @@
                 					<field name="latitude"/>
                 					<field name="longitude"/>
                 					<field name="currency_id"/>
+                					<field name="website_id"/>
                 				</group>
                 				<group>
                 					<field name="priority" widget="priority"/>
@@ -247,10 +248,11 @@
                        				<field name="delivery_date"/>
                 					<field name="immediate_delivery"/>
                 					<field name="user_id"/>
+                					<field name="website_published"/>
                 				</group>
                 			</group>
                 		 <notebook>
-                		 	<page string="Units"  autofocus="autofocus">
+                		 	<page string="Units"  autofocus="autofocus" name="units">
                 		 		<field name="units_ids" mode="kanban" context="{'default_development_id': active_id, 'default_user_id': user_id, 'default_type': 'estate'}">
                 		 			<kanban>    
                 		 				<field name="id"/>            		 				
@@ -267,6 +269,13 @@
                 		 			</kanban>
                             	</field>
                 		 	</page>
+                		 	<page name="seo" string="SEO" groups="base.group_no_one">
+                                <group name="default_opengraph">
+                                    <field name="website_meta_title" string="Meta Title"/>
+                                    <field name="website_meta_description" string="Meta Description"/>
+                                    <field name="website_meta_keywords" string="Meta Keywords" help="Separate every keyword with a comma"/>
+                                </group>
+                            </page>
                 		 </notebook>
                 	</sheet>
                     <div class="oe_chatter">
@@ -285,6 +294,8 @@
                 <tree string="Real Estate Development" decoration-bf="message_needaction==True" decoration-danger="state=='stopped'" decoration-muted="state=='cancel'">
                     <field name="name"/>                    
                     <field name="state"/>
+                	<field name="user_id"/>
+                	<field name="website_id"/>
                 	 <field name="message_needaction" invisible="1"/>
                 </tree>
              </field>

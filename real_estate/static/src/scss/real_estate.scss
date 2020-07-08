@@ -1,36 +1,4 @@
 
-.swiper-container {
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-
-
-
-.swiper-slide {
-      background-position: center;
-      background-size: cover;
-      width: 300px !important;
-      height: 450px !important;
-      margin-bottom: 25px;
-
-    }
-.swiper-pagination-bullet {
-      width: 20px;
-      height: 20px;
-      text-align: center;
-      line-height: 20px;
-      font-size: 12px;
-      color:#000;
-      opacity: 1;
-      background: rgba(0,0,0,0.2);
-    }
-.swiper-pagination-bullet-active {
-      color:#fff;
-      background:$primary;
-    }
-
-
 
 .re-price-container {	
 	width:100%;
@@ -71,4 +39,35 @@
 	font-weight: bold;
     float:left;
     padding-top:1.2em;
+}
+
+.re-corner-ribbon {
+  width: 250px;
+  background: #e43;
+  position: absolute;
+  top: 25px;
+  left: -50px;
+  text-align: center;
+  line-height: 50px;
+  letter-spacing: 1px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  overflow: hidden;
+}
+.re-corner-ribbon.shadow {
+  box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+/* Different positions */
+
+.re-corner-ribbon.top-right {
+  /* top: 18px; */
+    top:30px;
+  right: -70px;
+  left: auto;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(46deg);
+  overflow: hidden;
+}
+.re-corner-ribbon.blue {
+  background: #39d;
 }

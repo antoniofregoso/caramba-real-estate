@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
     
     
     type = fields.Selection(selection_add=[('estate', 'Real Estate')], tracking=True)
-    development_id = fields.Many2one('real_estate.development', 'Development', select=True)
+    development_id = fields.Many2one('real_estate.development', 'Development', select=True, ondelete='cascade')
     real_estate_type_id = fields.Many2one('real_estate.type', 'Type')  
     area = fields.Float('Builded Surface (m2)')
     lot = fields.Float('Total Area: (m2)')
@@ -28,14 +28,13 @@ class ProductTemplate(models.Model):
     roof_garden = fields.Float('Roof Garden (m2)')
     storage = fields.Float('Storage (m3)')
     service_yard = fields.Float('Service Yard (m2)')
-    real_estate_website_url = fields.Char(compute='_compute_real_estate_website_url()')
     environments_ids = fields.Many2many('real_estate.environment', 'product_real_state_environmen_rel',
                                         'product_id', 'envirnment_id', string = 'Environments')
     real_estate_sequence = fields.Integer('Website Sequence', help="Determine the display order in the Website E-commerce",
                                       default=lambda self: self._default_real_estate_sequence(), copy=False)
     real_estate_description = fields.Html('Description', translate=html_translate)
     real_estate_website_header = fields.Html('Description for the website', sanitize_attributes=False, translate=html_translate)
-    
+    re_sold = fields.Boolean('Sold', default=False)
       
     def _default_real_estate_sequence(self):
         ''' We want new product to be the last (highest seq).

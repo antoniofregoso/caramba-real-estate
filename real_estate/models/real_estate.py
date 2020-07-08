@@ -35,7 +35,7 @@ class RealEstateType(models.Model):
     
 
 class RealEstateDevelopment(models.Model):
-    _inherit = ['mail.thread', 'mail.activity.mixin', "website.seo.metadata", 'website.published.multi.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'website.seo.metadata', 'website.published.multi.mixin']
     _name = 'real_estate.development'
     _description = 'Real State Development'
     _order = 'name asc, priority desc'
@@ -79,5 +79,7 @@ class RealEstateDevelopment(models.Model):
        
     def _expand_states(self, states, domain, order):
         return ['draft', 'onpresale', 'onsale', 'sold', 'stopped']
+    
+
     
     

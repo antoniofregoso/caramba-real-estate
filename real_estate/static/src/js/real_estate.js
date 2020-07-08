@@ -3,14 +3,15 @@ odoo.define('real_estate.real_estate', function (require) {
 
 
 var publicWidget = require('web.public.widget');
-var Swiper = require('Swiper');
 
-publicWidget.registry.js_get_services = publicWidget.Widget.extend({
-    selector: '.re-swiper-container',
+publicWidget.registry.realEstateUnits = publicWidget.Widget.extend({
+    selector: '#re-units',
     
-    start: function () {
+   start: function () {
     	var self = this;
-    	var swiper = new Swiper('.re-swiper-container', {
+    	var config = document.getElementById('re-units');
+    	// base swipper
+    	var swiperStyle = {
     	      effect: 'coverflow',
     	      grabCursor: true,
     	      centeredSlides: true,
@@ -21,11 +22,45 @@ publicWidget.registry.js_get_services = publicWidget.Widget.extend({
     	        depth: 100,
     	        modifier: 1,
     	        slideShadows : true,
-    	      },
-    	      pagination: {
-    	        el: '.swiper-pagination',
-    	      },
-    	    });
+    	      }}
+    	// Navigation
+    	if (config.dataset.navigation=='True'){
+    		swiperStyle['navigation']= {
+  	          nextEl: '.swiper-button-next',
+	          prevEl: '.swiper-button-prev',
+	        }
+    	}    	
+    	//Pagination
+    	if (config.dataset.pagination=='numbered'){
+    		swiperStyle['pagination'] = {
+    	    	  el: '.swiper-pagination',
+                  clickable: true,
+                  renderBullet: function (index, className) {
+    	          return '<span class="' + className + '">' + (index + 1) + '</span>';
+    	        },};    		
+    	} else if (config.dataset.pagination=='dots') {
+    		swiperStyle['pagination'] = {
+    		        el: '.swiper-pagination',
+    	      };
+    	} else if (config.dataset.pagination=='progress') {
+    		swiperStyle['pagination'] = {
+    		        el: '.swiper-pagination',
+    		        type: 'progressbar',
+    	      };
+    	} else if (config.dataset.pagination=='fraction') {
+    		swiperStyle['pagination'] = {
+    		        el: '.swiper-pagination',
+    		        type: 'fraction',
+    	      };
+    	} else if (config.dataset.pagination=='scrollbar') {
+    		swiperStyle['pagination'] = {
+    				el: '.swiper-scrollbar',
+    		        hide: true,
+    	      };
+    	}
+    	
+    	var swiper = new Swiper('.re-units', 
+    			swiperStyle);
     },
     
 });

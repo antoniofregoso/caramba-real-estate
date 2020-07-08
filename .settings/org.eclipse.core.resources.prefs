@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//real_estate/__init__.py=utf-8
 encoding//real_estate/__manifest__.py=utf-8
 encoding//real_estate/models/__init__.py=utf-8
+encoding//real_estate/models/res_config_settings.py=utf-8
+encoding//real_estate/models/website.py=utf-8

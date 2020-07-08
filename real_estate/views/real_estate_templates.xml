@@ -4,14 +4,15 @@
 
 <template id="real_state_development_content" name="Real Estate Development Content">  
 	<t t-call="website.layout">
+    <div id="wrap">
 		 <section class="pt32 pb32 container-fluid">
+          <div t-field="development.website_header" class="oe_structure" id="development-header" /> 
             <div class="row s_nb_column_fixed">
                 <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
                     <h1 class="s_title_default"><font style="font-size: 32px;"><t t-esc="development.name"/></font></h1>
                 	 <h2 t-if="development.summary" t-esc="development.summary"/>
                 </div>
-            </div>
-          <div t-field="development.website_header" class="oe_structure" id="development-header" />  
+            </div> 
     </section>
      <section class="container">     
 	     <nav aria-label="breadcrumb">
@@ -69,14 +70,18 @@
     			</div>
     		</div>
     		<section>
-    			 <div t-field="development.description" class="oe_structure" id="development-description" />
+    			 <div t-field="development.description" class="oe_structure" name="development-description" />
     		</section>
-		    <div class="row">
-		    	<div class="swiper-container re-units">
-		    		<div class="swiper-wrapper">
-		    			 <t t-foreach="development.units_ids" t-as="unit">
-		    			 	 <div class="swiper-slide card">
+    		<!-- Start Swipper -->
+    		<section id="re-units" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation">
+		    <div class="swiper-container re-units" id="swiper-container" >
+		    	<div class="swiper-wrapper">
+		    		<t t-foreach="development.units_ids" t-as="unit">
+		    			 	 <div class="swiper-slide card" style="overflow:hidden;">		    			 	 
 		    			 	 	<div class="card-header bg-beta">
+		    			 	 	<t t-if="website.re_sold_ribbon and unit.re_sold">
+		    			 	 	<div class="re-corner-ribbon top-right sticky bg-warning shadow">Sold</div>
+		    			 	 	</t>
 		    			 	 	<h2 class="card-title " t-esc="unit.name" />
 		    			 	 		<p class="card-text" ><spam t-esc="unit.description_sale"/></p>
 	    	 						<div class="re-price-container">
@@ -87,24 +92,31 @@
 						    	 		</div>
 						    	 	</div>
 		    			 	 	</div>
-		    			 	 	 <ul class="list-group list-group-flush">
+		    			 	 	
+		    			 	  <div class="card-body ">
+		    			 	 	 <ul class="list-group list-group-flush text-left">
 								    <li class="list-group-item pl-5">Surface: <t t-esc="unit.area" /> m2</li>
 								    <li class="list-group-item pl-5">Bedrooms: <t t-esc="unit.beds" /></li>
 								    <li t-if="unit.master_suite>0" class="list-group-item pl-5">Master Suite: <t t-esc="unit.master_suite" /></li>
 								    <li t-if="unit.parking>0" class="list-group-item pl-5">Parking Places: <t t-esc="unit.parking" /></li>
 								  </ul>
+								  </div>
 		    			 	 	 <div class="card-footer">
-		    			 	 	 	<a t-att-href="unit.website_url" class="btn btn-primary">See information</a>
+		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.re_sold==True and website.re_disable_sold==True else ''}" >See information</a>
 		    			 	 	 </div>
 		    			 	</div>
 		    			 </t>
-		    		</div>
-		    		<div class="swiper-pagination"></div>
 		    	</div>
+		    	 <div t-if="website.re_navigation" class="swiper-button-next"></div>
+   				<div  t-if="website.re_navigation" class="swiper-button-prev"></div>
+		    	<div t-if="website.re_pagination != 'none' and website.re_pagination != 'scrollbar'" class="swiper-pagination"></div>
+		    	<div t-if="website.re_pagination=='scrollbar'" class="swiper-scrollbar"></div>
 		    </div>
+		    <!-- End Swipper -->
+		    </section>
     </div>
      <div class="col-md-4 col-sm-12">
-     <div id="card-share" class="card mb32 shadow-sm" style="width: 18rem;">
+     <div id="card-share" class="card mb32 shadow-sm" >
 			  <div class="card-header bg-beta">
 			    Share
 			  </div>
@@ -123,7 +135,7 @@
         </a>
     </div>
 		</div>
-     	<div id="card-contact" class="card mb32 shadow-sm" style="width: 18rem;">
+     	<div id="card-contact" class="card mb32 shadow-sm" >
 			  <div class="card-header  bg-beta">
 			    Your Real Estate Agent
 			  </div>
@@ -135,7 +147,7 @@
 			  </ul>
 		</div>
     
-    	<div id="card-form" class="card mb32 shadow-sm" style="width: 18rem;">
+    	<div id="card-form" class="card mb32 shadow-sm" >
 			  <div class="card-header bg-beta">
 			    I'm interested
 			  </div>
@@ -161,44 +173,25 @@
      </div>
    </div>
    </section>
+   </div>
+   
+   
     </t>
-     <script>
-     var swiper = new Swiper('.re-units', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            initialSlide: 3,
-            coverflowEffect: {
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows : true,
-            },
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-              renderBullet: function (index, className) {
-	          return '<span class="' + className + '">' + (index + 1) + '</span>';
-	        },
-            },
-          });
-  </script>
 </template>
 
 <!--  Real Estate Unit -->
 
 <template id="real_state_unit_content" name="Real Estate Unit Content">  
 	<t t-call="website.layout">
+    <div id="wrap">
 		 <section class="pt32 pb32 container-fluid">
+		  <div t-field="unit.real_estate_website_header" class="oe_structure" id="unit-header" />
             <div class="row s_nb_column_fixed">
                 <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
                     <h1 class="s_title_default"><font style="font-size: 32px;"><t t-esc="unit.name"/></font></h1>
                 	 <h2 t-if="unit.description_sale" t-esc="unit.description_sale"/>
                 </div>
             </div>
-          <div t-field="unit.real_estate_website_header" class="oe_structure" id="unit-header" />  
     </section>
      <section class="container">
      <nav aria-label="breadcrumb">
@@ -327,7 +320,7 @@
     		</section>
     </div>
      <div class="col-md-4 col-sm-12">
-     <div id="card-share" class="card mb32 shadow-sm" style="width: 18rem;">
+     <div id="card-share" class="card mb32 shadow-sm" >
 			  <div class="card-header bg-beta">
 			    Share
 			  </div>
@@ -346,7 +339,7 @@
         </a>
     </div>
 		</div>
-     	<div id="card-contact" class="card mb32 shadow-sm" style="width: 18rem;">
+     	<div id="card-contact" class="card mb32 shadow-sm" >
 			  <div class="card-header  bg-beta">
 			    Your Real Estate Agent
 			  </div>
@@ -358,7 +351,7 @@
 			  </ul>
 		</div>
     
-    	<div id="card-form" class="card mb32 shadow-sm" style="width: 18rem;">
+    	<div id="card-form" class="card mb32 shadow-sm" >
 			  <div class="card-header bg-beta">
 			    I'm interested
 			  </div>
@@ -384,6 +377,7 @@
      </div>
    </div>
    </section>
+   </div>
     </t>
 </template>
 
