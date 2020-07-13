@@ -10,7 +10,7 @@
     'website': "https://antoniofregoso.com",
 
     'category': 'Real Estate',
-    'version': '13.0.0.0.0',
+    'version': '13.0.0.4,0',
 
     'depends': ['website_crm', 'website_sale', 'website_swiper'],
 
