@@ -28,13 +28,13 @@
     			<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values['offer']" /></small></h2>
     			<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values['state']" /></small></h2>
     				 <h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
-    				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+    				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_to" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
     			</div>
     			<div class="col-md-6 text-right">  
     				<t t-if="development.priority=='0'"><i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t>
-    				<t t-elif="development.priority=='1'"><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
-    				<t t-elif="development.priority=='2'"><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
-    				<t t-else=""><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /></t> 				 				
+    				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-else=""><i class="re-gold  fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
 	    			<h2  t-esc="web_values['type']"/>
 	    			<h2><small>Delivery: </small>
 	    			<t t-if="development.immediate_delivery">Inmediate</t>
@@ -73,7 +73,7 @@
     			 <div t-field="development.description" class="oe_structure" name="development-description" />
     		</section>
     		<!-- Start Swipper -->
-    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation">
+    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation" data-container=".re-units">
 		    <div class="swiper-container re-units" id="swiper-container" >
 		    	<div class="swiper-wrapper">
 		    		<t t-foreach="development.units_ids" t-as="unit">
@@ -121,16 +121,16 @@
 			    Share
 			  </div>
 			   <div t-attf-class="s_share #{_classes} text-center">
-        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="s_share_facebook #{_link_classes}" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-facebook #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="s_share_twitter #{_link_classes}" target="_blank">
+        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-twitter #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="s_share_linkedin #{_link_classes}" target="_blank">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-linkedin #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="s_share_email #{_link_classes}">
+        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="#{_link_classes}">
             <i t-attf-class="fa fa-1x fa-envelope #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
     </div>

@@ -6,6 +6,9 @@ from odoo.addons.http_routing.models.ir_http import slug
 from odoo.tools.translate import html_translate
 from datetime import date
 
+import logging
+_logger = logging.getLogger(__name__)
+
 class RealEstateAmenitie(models.Model):
     _name = 'real_estate.amenitie'
     _description = 'Real State Amenitie'
@@ -73,12 +76,34 @@ class RealEstateDevelopment(models.Model):
     services_ids = fields.Many2many('real_estate.service','real_state_development_real_state_service_rel', 'real_state_devlopment_id','real_state_service_id', string='Services')
     user_id = fields.Many2one('res.users', string='Responsible', index=True, tracking=True, default=lambda self: self.env.user)
     units_ids = fields.One2many('product.template', 'development_id', string='Unit')  
-    price_from = fields.Float('From', default=10000000.00)
-    price_to = fields.Float('To', default=20000000.00)
+    price_from = fields.Float('From')
+    price_to = fields.Float('To')
     currency_id = fields.Many2one('res.currency', required=True)
        
     def _expand_states(self, states, domain, order):
         return ['draft', 'onpresale', 'onsale', 'sold', 'stopped']
+    
+    @api.model
+    def create(self, vals):        
+        prices = []
+        if self.units_ids:
+            for unit in self.units_ids:
+                prices.append(unit.list_price)
+            vals['price_from'] = min(prices)
+            vals['price_to'] = max(prices)
+        res = super(RealEstateDevelopment, self).create(vals)
+        return res
+    
+    def write(self, vals):
+        prices = []
+        if self.units_ids:
+            for unit in self.units_ids:
+                prices.append(unit.list_price)           
+            vals['price_from'] = min(prices)
+            vals['price_to'] = max(prices)  
+        res = super(RealEstateDevelopment, self).write(vals)
+        return res
+
     
 
     
