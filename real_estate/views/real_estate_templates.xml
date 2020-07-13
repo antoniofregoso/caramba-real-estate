@@ -325,16 +325,16 @@
 			    Share
 			  </div>
 			   <div t-attf-class="s_share #{_classes} text-center">
-        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="s_share_facebook #{_link_classes}" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-facebook #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="s_share_twitter #{_link_classes}" target="_blank">
+        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-twitter #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="s_share_linkedin #{_link_classes}" target="_blank">
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="#{_link_classes}" target="_blank">
             <i t-attf-class="fa fa-1x fa-linkedin #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
-        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="s_share_email #{_link_classes}">
+        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="#{_link_classes}">
             <i t-attf-class="fa fa-1x fa-envelope #{not _link_classes and 'rounded shadow-sm'}"/>
         </a>
     </div>
