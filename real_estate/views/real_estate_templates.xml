@@ -212,9 +212,9 @@
     			</div>
     			<div class="col-md-6 text-right">  
     				<t t-if="development.priority=='0'"><i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t>
-    				<t t-elif="development.priority=='1'"><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
-    				<t t-elif="development.priority=='2'"><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
-    				<t t-else=""><i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /> <i class="fa fa-1x fa-star" /></t> 				 				
+    				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-else=""><i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
 	    			<h2  t-esc="unit.real_estate_type_id.name"/>
 	    			<h2><small>Delivery: </small>
 	    			<t t-if="development.immediate_delivery">Inmediate</t>
