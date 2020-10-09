@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_legal_mx_sale_legal_mx,sale_legal_mx.sale_legal_mx,model_sale_legal_mx_sale_legal_mx,,1,0,0,0
