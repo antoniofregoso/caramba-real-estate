@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+    <!-- Real State Types -->
+    
+    <record id="real_estate_type_opt_1" model="real_estate.type">
+    	<field name="name">Warehouse</field>
+    </record>
+    
+    <record id="real_estate_type_opt_2" model="real_estate.type">
+    	<field name="name">House</field>
+    </record>
+    
+    <record id="real_estate_type_opt_3" model="real_estate.type">
+    	<field name="name">Room</field>
+    </record>
+    <record id="real_estate_type_opt_4" model="real_estate.type">
+    	<field name="name">Department</field>
+    </record>
+    
+    <record id="real_estate_type_opt_5" model="real_estate.type">
+    	<field name="name">Building</field>
+    </record>
+    
+    <record id="real_estate_type_opt_6" model="real_estate.type">
+    	<field name="name">Commercial premise</field>
+    </record>
+    
+    <record id="real_estate_type_opt_7" model="real_estate.type">
+    	<field name="name">Office</field>
+    </record>
+    
+    <record id="real_estate_type_opt_8" model="real_estate.type">
+    	<field name="name">Land</field>
+    </record>
+    
+    <record id="real_estate_type_opt_9" model="real_estate.type">
+    	<field name="name">Other Propertie</field>
+    </record>
+ 
+ <!--  Real State Amenities -->
+     
+    <record id="real_estate_amenitie_opt_1" model="real_estate.amenitie">
+    	<field name="name">Internet access</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_2" model="real_estate.amenitie">
+    	<field name="name">Air conditioning</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_3" model="real_estate.amenitie">
+    	<field name="name">Heating</field>
+    </record>
+    <record id="real_estate_amenitie_opt_4" model="real_estate.amenitie">
+    	<field name="name">Chimney</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_5" model="real_estate.amenitie">
+    	<field name="name">Tank</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_6" model="real_estate.amenitie">
+    	<field name="name">Jacuzzi</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_7" model="real_estate.amenitie">
+    	<field name="name">Cinema area</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_8" model="real_estate.amenitie">
+    	<field name="name">Children's play area</field>
+    </record>
+    <record id="real_estate_amenitie_opt_9" model="real_estate.amenitie">
+    	<field name="name">Lift</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_10" model="real_estate.amenitie">
+    	<field name="name">Bussiness center</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_11" model="real_estate.amenitie">
+    	<field name="name">Tennis court</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_12" model="real_estate.amenitie">
+    	<field name="name">Parking for visitors</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_13" model="real_estate.amenitie">
+    	<field name="name">Gym</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_14" model="real_estate.amenitie">
+    	<field name="name">Laundry</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_15" model="real_estate.amenitie">
+    	<field name="name">Grill</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_16" model="real_estate.amenitie">
+    	<field name="name">Swimming pool</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_17" model="real_estate.amenitie">
+    	<field name="name">Party room</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_18" model="real_estate.amenitie">
+    	<field name="name">Multipurpose room</field>
+    </record> 
+    <record id="real_estate_amenitie_opt_19" model="real_estate.amenitie">
+    	<field name="name">Security</field>
+    </record> 
+    
+    <!-- Real State Services -->
+    <record id="real_estate_service_opt_1" model="real_estate.service">
+    	<field name="name">Running water</field>
+    </record> 
+    <record id="real_estate_service_opt_2" model="real_estate.service">
+    	<field name="name">Boiler</field>
+    </record> 
+    <record id="real_estate_service_opt_3" model="real_estate.service">
+    	<field name="name">Natural gas</field>
+    </record> 
+    <record id="real_estate_service_opt_4" model="real_estate.service">
+    	<field name="name">Telephone line</field>
+    </record> 
+    
+    <!--  environment -->
+    <record id="real_estate_service_opt_1" model="real_estate.environment">
+    	<field name="name">Balcony</field>
+    </record> 
+    <record id="real_estate_service_opt_2" model="real_estate.environment">
+    	<field name="name">Kitchen</field>
+    </record> 
+    <record id="real_estate_service_opt_3" model="real_estate.environment">
+    	<field name="name">Dining room</field>
+    </record> 
+    <record id="real_estate_service_opt_4" model="real_estate.environment">
+    	<field name="name">Service room</field>
+    </record> 
+    <record id="real_estate_service_opt_5" model="real_estate.environment">
+    	<field name="name">Breakfast room</field>
+    </record> 
+    <record id="real_estate_service_opt_6" model="real_estate.environment">
+    	<field name="name">Suite bedroom</field>
+    </record> 
+    <record id="real_estate_service_opt_7" model="real_estate.environment">
+    	<field name="name">Study</field>
+    </record> 
+    <record id="real_estate_service_opt_8" model="real_estate.environment">
+    	<field name="name">Garden</field>
+    </record> 
+    <record id="real_estate_service_opt_9" model="real_estate.environment">
+    	<field name="name">Laundry room</field>
+    </record> 
+    <record id="real_estate_service_opt_10" model="real_estate.environment">
+    	<field name="name">Living room</field>
+    </record> 
+    <record id="real_estate_service_opt_11" model="real_estate.environment">
+    	<field name="name">Playground</field>
+    </record> 
+    <record id="real_estate_service_opt_12" model="real_estate.environment">
+    	<field name="name">Closets</field>
+    </record> 
+    <record id="real_estate_service_opt_13" model="real_estate.environment">
+    	<field name="name">Terrace</field>
+    </record> 
+    <record id="real_estate_service_opt_14" model="real_estate.environment">
+    	<field name="name">Dressing room</field>
+    </record> 
+    <record id="real_estate_service_opt_15" model="real_estate.environment">
+    	<field name="name">Play room</field>
+    </record> 
+    <record id="real_estate_service_opt_16" model="real_estate.environment">
+    	<field name="name">Roof garden</field>
+    </record> 
+    
+    </data>
+</odoo>    

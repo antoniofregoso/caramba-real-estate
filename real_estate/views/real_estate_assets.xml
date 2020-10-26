@@ -1,0 +1,10 @@
+<odoo>
+  
+
+<template id="assets_frontend" inherit_id="portal.assets_frontend" name="Caramba Snippets  Front-end assets">
+    <xpath expr="//link[last()]" position="after">
+          <link rel="stylesheet" type="text/scss" href="/real_estate/static/src/scss/real_estate.scss"/>    
+	 </xpath>
+</template>
+
+</odoo>

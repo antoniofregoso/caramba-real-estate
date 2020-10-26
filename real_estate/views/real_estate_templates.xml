@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<template id="real_state_development_content" name="Real Estate Development Content">  
+	<t t-call="website.layout">
+    <div id="wrap">
+		 <section class="pt32 pb32 container-fluid">
+          <div t-field="development.website_header" class="oe_structure" id="development-header" /> 
+            <div class="row s_nb_column_fixed">
+                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                    <h1 class="s_title_default"><font style="font-size: 32px;"><t t-esc="development.name"/></font></h1>
+                	 <h2 t-if="development.summary" t-esc="development.summary"/>
+                </div>
+            </div> 
+    </section>
+     <section class="container">     
+	     <nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a href="#">Home</a></li>
+		    <li class="breadcrumb-item" t-esc="development.name" />
+		  </ol>
+		  </nav>
+    <div class="row">
+    <div class="col-md-8 col-sm-12">
+    		<div class="row bg-beta pt32 pb32">
+    			<div class="col-md-6">
+    			<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values['offer']" /></small></h2>
+    			<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values['state']" /></small></h2>
+    				 <h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+    				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_to" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+    			</div>
+    			<div class="col-md-6 text-right">  
+    				<t t-if="development.priority=='0'"><i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t>
+    				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-else=""><i class="re-gold  fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
+	    			<h2  t-esc="web_values['type']"/>
+	    			<h2><small>Delivery: </small>
+	    			<t t-if="development.immediate_delivery">Inmediate</t>
+	    			<t t-else="" t-options="{'widget': 'date'}"><t t-esc="development.delivery_date" /></t>
+	    			</h2>
+    			
+    			</div>
+    		</div>
+    		
+    		<div class="row pt32 pb32">
+    			<div class="col-md-6">
+    				<h3>Location</h3>
+    				<address>
+    					<t t-if="development.street"><t t-esc="development.street"/></t>, <t t-if="development.street2"><t t-esc="development.street2"/></t><br />
+    					<t t-if="development.city"><t t-esc="development.city"/></t>, <t t-if="development.state_id"><t t-esc="development.state_id.name"/></t><br />
+    					<t t-if="development.country_id"><t t-esc="development.country_id.name"/></t>, <t t-if="development.zip"><t t-esc="development.zip"/></t>
+    					
+    				</address>    				
+    			</div>
+    			<div class="col-md-6 text-right">
+    			<t t-if="development.amenities_ids">
+    			 <h3>Amenities</h3>
+			     <t t-foreach="development.amenities_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+			     <t t-if="development.services_ids">
+    			 <h3>Services</h3>
+			     <t t-foreach="development.services_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+    			</div>
+    		</div>
+
+			<section class="s_google_map pt256 pb256" data-map-type="ROADMAP" data-map-color="" data-map-zoom="12" data-map-gps="(50.854975,4.3753899)" data-pin-style="flat">
+				<div class="map_container"/>
+			</section>
+    		<section>
+    			 <div t-field="development.description" class="oe_structure" name="development-description" />
+    		</section>
+    		<!-- Start Swipper -->
+    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation" data-container=".re-units">
+		    <div class="swiper-container re-units" id="swiper-container" >
+		    	<div class="swiper-wrapper">
+		    		<t t-foreach="development.units_ids" t-as="unit">
+		    			 	 <div class="swiper-slide card" style="overflow:hidden;">		    			 	 
+		    			 	 	<div class="card-header bg-beta">
+		    			 	 	<t t-if="website.re_sold_ribbon and unit.re_sold">
+		    			 	 	<div class="re-corner-ribbon top-right sticky bg-warning shadow">Sold</div>
+		    			 	 	</t>
+		    			 	 	<h2 class="card-title " t-esc="unit.name" />
+		    			 	 		<h3 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h3>
+	    	 						<div class="re-price-container">
+		    	 						<div class="re-price">
+						    	 			<span class="re-money-sign">$</span>
+						    	 			<span class="re-money" t-esc="'{:,}'.format(int(unit.list_price))"/>
+						    	 			<span class="re-cents" t-raw="'.' + str(round(unit.list_price - int(unit.list_price), 2)).replace('0.','').ljust(2,'0')"/>
+						    	 		</div>
+						    	 	</div>
+		    			 	 	</div>
+		    			 	 	
+		    			 	  <div class="card-body ">
+		    			 	 	 <ul class="list-group list-group-flush text-left">
+								    <li class="list-group-item pl-5">Surface: <t t-esc="unit.area" /> m2</li>
+								    <li class="list-group-item pl-5">Bedrooms: <t t-esc="unit.beds" /></li>
+								    <li t-if="unit.master_suite>0" class="list-group-item pl-5">Master Suite: <t t-esc="unit.master_suite" /></li>
+								    <li t-if="unit.parking>0" class="list-group-item pl-5">Parking Places: <t t-esc="unit.parking" /></li>
+								  </ul>
+								  </div>
+		    			 	 	 <div class="card-footer">
+		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.re_sold==True and website.re_disable_sold==True else ''}" >See information</a>
+		    			 	 	 </div>
+		    			 	</div>
+		    			 </t>
+		    	</div>
+		    	 <div t-if="website.re_navigation" class="swiper-button-next"></div>
+   				<div  t-if="website.re_navigation" class="swiper-button-prev"></div>
+		    	<div t-if="website.re_pagination != 'none' and website.re_pagination != 'scrollbar'" class="swiper-pagination"></div>
+		    	<div t-if="website.re_pagination=='scrollbar'" class="swiper-scrollbar"></div>
+		    </div>
+		    <!-- End Swipper -->
+		    </section>
+    </div>
+     <div class="col-md-4 col-sm-12">
+     <div id="card-share" class="card mb32 shadow-sm" >
+			  <div class="card-header bg-beta">
+			    Share
+			  </div>
+			   <div t-attf-class="s_share #{_classes} text-center">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-facebook #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-twitter #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-linkedin #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="#{_link_classes}">
+            <i t-attf-class="fa fa-1x fa-envelope #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+    </div>
+		</div>
+     	<div id="card-contact" class="card mb32 shadow-sm" >
+			  <div class="card-header  bg-beta">
+			    Your Real Estate Agent
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item"><t t-esc="development.user_id.name" /></li>
+			    <t t-if="development.user_id.email"><li class="list-group-item"><span class="fa fa-1x fa-envelope-o"></span> <a t-att-href="'mailto: ' + development.user_id.email"><t t-esc="development.user_id.email"/></a></li></t>
+			    <t t-if="development.user_id.mobile"><li class="list-group-item"><span class="fa fa-1x fa-whatsapp"></span> <a t-att-href="'https://wa.me/' + development.user_id.mobile.strip()"><t t-esc="development.user_id.mobile"/></a></li></t>
+			    <t t-if="development.user_id.phone"><li class="list-group-item"><span class="fa fa-1x fa-phone"></span> <a t-att-href="'tel: ' + development.user_id.phone"><t t-esc="development.user_id.phone"/></a></li></t>
+			  </ul>
+		</div>
+    
+    	<div id="card-form" class="card mb32 shadow-sm" >
+			  <div class="card-header bg-beta">
+			    I'm interested
+			  </div>
+			   <div class="card-body">
+			  <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form container-fluid mt32 px-2" enctype="multipart/form-data" >
+                     <div class="form-group">
+    					 <input type="text" class="form-control o_website_form_input" placeholder="Your Name" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	 <input type="text" class="form-control o_website_form_input" placeholder="Phone Number" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	<input type="text" class="form-control o_website_form_input" placeholder="Email" name="email_from" t-att-value="request.params.get('email_from', '')" required="" />
+                     </div>
+                      <div class="form-group">
+                      	 <input type="text" class="form-control o_website_form_input" t-att-value="development.name" name="name" required=""/>
+                      </div>
+                      <button class="btn btn-primary btn-lg o_website_form_send o_default_snippet_text">Send</button>
+                      <span id="o_website_form_result"/>
+              </form>   
+              </div>    
+	</div>
+     </div>
+   </div>
+   </section>
+   </div>
+   
+   
+    </t>
+</template>
+
+<!--  Real Estate Unit -->
+
+<template id="real_state_unit_content" name="Real Estate Unit Content">  
+	<t t-call="website.layout">
+    <div id="wrap">
+		 <section class="pt32 pb32 container-fluid">
+		  <div t-field="unit.real_estate_website_header" class="oe_structure" id="unit-header" />
+            <div class="row s_nb_column_fixed">
+                <div class="col-lg-12 s_title pt16 pb16" style="text-align: center;">
+                    <h1 class="s_title_default"><font style="font-size: 32px;"><t t-esc="unit.name"/></font></h1>
+                	 <h2 t-if="unit.description_sale" t-esc="unit.description_sale"/>
+                </div>
+            </div>
+    </section>
+     <section class="container">
+     <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a t-att-href="development.website_url" t-esc="development.name" /></li>
+    <li class="breadcrumb-item active" aria-current="page" t-esc="unit.name" />
+  </ol>
+</nav>
+    <div class="row">
+    <div class="col-md-8 col-sm-12">
+    		<div class="row bg-beta pt32 pb32">
+    			<div class="col-md-6">
+    				<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values['offer']" /></small></h2>
+    				<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values['state']" /></small></h2>
+    				 <h2 t-if="unit.list_price"><t t-esc="unit.list_price" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+    				  <h2 t-if="unit.area>0"><t t-esc="unit.area" /> m2</h2>
+    			</div>
+    			<div class="col-md-6 text-right">  
+    				<t t-if="development.priority=='0'"><i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t>
+    				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
+    				<t t-else=""><i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
+	    			<h2  t-esc="unit.real_estate_type_id.name"/>
+	    			<h2><small>Delivery: </small>
+	    			<t t-if="development.immediate_delivery">Inmediate</t>
+	    			<t t-else="" t-options="{'widget': 'date'}"><t t-esc="development.delivery_date" /></t>
+	    			</h2>
+    			
+    			</div>
+    		</div>
+    		
+    		<div class="row pt32 pb32">
+    			<div class="col-md-6">
+    				<h3>Location</h3>
+    				<address>
+    					<t t-if="development.street"><t t-esc="development.street"/></t>, <t t-if="development.street2"><t t-esc="development.street2"/></t><br />
+    					<t t-if="development.city"><t t-esc="development.city"/></t>, <t t-if="development.state_id"><t t-esc="development.state_id.name"/></t><br />
+    					<t t-if="development.country_id"><t t-esc="development.country_id.name"/></t>, <t t-if="development.zip"><t t-esc="development.zip"/></t>
+    					
+    				</address>    				
+    			</div>
+    			<div class="col-md-6 text-right">
+    			<t t-if="unit.environments_ids">
+    			 <h3>Environments</h3>
+			     <t t-foreach="unit.environments_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+			     <t t-if="development.services_ids">
+    			 <h3>Services</h3>
+			     <t t-foreach="development.services_ids" t-as="i">
+			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+			     </t>
+			     </t>
+    			</div>
+    		</div>
+    		<section>
+    			 <div t-field="unit.real_estate_description" class="oe_structure" id="development-description" />
+    		</section>
+    		<section id="unit_data">    			
+			    <div class="row">
+			    	<div class="col-12 col-lg-6">
+			    		<h2>Features</h2>
+			    		<table class="table table-striped">
+			    			  <tbody>
+			    			  	<tr t-if="unit.floor">
+			    			  		<td >Floor</td><td t-esc="unit.floor"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storeys">
+			    			  		<td >Storeys</td><td t-esc="unit.storeys"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.beds">
+			    			  		<td >Bedrooms</td><td t-esc="unit.beds"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.master_suite">
+			    			  		<td >Master Suites</td><td t-esc="unit.master_suite"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.baths">
+			    			  		<td >Bathrooms</td><td t-esc="unit.baths"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.hbaths">
+			    			  		<td >Half Bathrooms</td><td t-esc="unit.hbaths"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.parking">
+			    			  		<td >Parking Places</td><td t-esc="unit.parking"></td>
+			    			  	</tr>
+			    			  </tbody>
+			    		</table>
+			    	</div>
+			    	<div class="col-12 col-lg-6">
+			    		<h2>Measurements</h2>			    		
+			    		<table class="table table-striped">
+			    			  <tbody>
+			    			  	<tr t-if="unit.area">
+			    			  		<td >Builded Surface</td><td t-esc="unit.area" /><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.lot">
+			    			  		<td >Total Area</td><td t-esc="unit.lot"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storeys">
+			    			  		<td >Storeys</td><td t-esc="unit.storeys"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.balcony">
+			    			  		<td >Balcony</td><td t-esc="unit.balcony"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.terrace">
+			    			  		<td >terrace</td><td t-esc="unit.terrace"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.garden">
+			    			  		<td >Garden</td><td t-esc="unit.garden"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.roof_garden">
+			    			  		<td >Roof Garden</td><td t-esc="unit.roof_garden"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storage">
+			    			  		<td >Storage</td><td t-esc="unit.storage"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.service_yard">
+			    			  		<td >Service Yard</td><td t-esc="unit.service_yard"/><td> m2</td>
+			    			  	</tr>
+			    			  </tbody>
+			    		</table>
+			    	</div>
+			    </div>
+    		</section>
+    </div>
+     <div class="col-md-4 col-sm-12">
+     <div id="card-share" class="card mb32 shadow-sm" >
+			  <div class="card-header bg-beta">
+			    Share
+			  </div>
+			   <div t-attf-class="s_share #{_classes} text-center">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={url}" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-facebook #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text={title}&amp;url={url}" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-twitter #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={url}&amp;title={title}&amp;" t-attf-class="#{_link_classes}" target="_blank">
+            <i t-attf-class="fa fa-1x fa-linkedin #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+        <a href="mailto:?body={url}&amp;subject={title}" t-attf-class="#{_link_classes}">
+            <i t-attf-class="fa fa-1x fa-envelope #{not _link_classes and 'rounded shadow-sm'}"/>
+        </a>
+    </div>
+		</div>
+     	<div id="card-contact" class="card mb32 shadow-sm" >
+			  <div class="card-header  bg-beta">
+			    Your Real Estate Agent
+			  </div>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item"><t t-esc="development.user_id.name" /></li>
+			    <t t-if="development.user_id.email"><li class="list-group-item"><span class="fa fa-1x fa-envelope-o"></span> <a t-att-href="'mailto: ' + development.user_id.email"><t t-esc="development.user_id.email"/></a></li></t>
+			    <t t-if="development.user_id.mobile"><li class="list-group-item"><span class="fa fa-1x fa-whatsapp"></span> <a t-att-href="'https://wa.me/' + development.user_id.mobile.strip()"><t t-esc="development.user_id.mobile"/></a></li></t>
+			    <t t-if="development.user_id.phone"><li class="list-group-item"><span class="fa fa-1x fa-phone"></span> <a t-att-href="'tel: ' + development.user_id.phone"><t t-esc="development.user_id.phone"/></a></li></t>
+			  </ul>
+		</div>
+    
+    	<div id="card-form" class="card mb32 shadow-sm" >
+			  <div class="card-header bg-beta">
+			    I'm interested
+			  </div>
+			   <div class="card-body">
+			  <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/contactus-thank-you" class="s_website_form container-fluid mt32 px-2" enctype="multipart/form-data" >
+                     <div class="form-group">
+    					 <input type="text" class="form-control o_website_form_input" placeholder="Your Name" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	 <input type="text" class="form-control o_website_form_input" placeholder="Phone Number" name="phone" t-att-value="request.params.get('phone', '')" required=""/>
+                     </div>
+                     <div class="form-group">
+                     	<input type="text" class="form-control o_website_form_input" placeholder="Email" name="email_from" t-att-value="request.params.get('email_from', '')" required="" />
+                     </div>
+                      <div class="form-group">
+                      	 <input type="text" class="form-control o_website_form_input" t-att-value="development.name + ': ' + unit.name" name="name" required=""/>
+                      </div>
+                      <button class="btn btn-primary btn-lg o_website_form_send o_default_snippet_text">Send</button>
+                      <span id="o_website_form_result"/>
+              </form>   
+              </div>    
+	</div>
+     </div>
+   </div>
+   </section>
+   </div>
+    </t>
+</template>
+
+
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website.real_estate</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+        	<div id="webmaster_settings" position="after">
+        		<h2>Real Estate</h2>
+        		<div class="row mt16 o_settings_container" id="real_estate_settings">
+        			 <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">
+                                    <field name="re_sold_ribbon"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_sold_ribbon"/>
+                                    <div class="text-muted">
+                                        Show a ribbon on sold properties
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">
+                                    <field name="re_disable_sold"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_disable_sold"/>
+                                    <div class="text-muted">
+                                        Disables navigation of sold properties
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">
+                                    <field name="re_navigation"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_navigation"/>
+                                     <div class="text-muted">
+                                        Add navigation arrows
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">                                   
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_pagination"/> <field name="re_pagination"/>
+                                     <div class="text-muted">
+                                        Paging styles of units in real estate developments
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">                                   
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_map_type"/> <field name="re_map_type"/>
+                                     <div class="text-muted">
+                                        Paging styles of units in real estate developments
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">                                   
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_map_color"/> <field name="re_map_color"/>
+                                     <div class="text-muted">
+                                        Paging styles of units in real estate developments
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">                                   
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_map_pin_style"/> <field name="re_map_pin_style"/>
+                                     <div class="text-muted">
+                                        Paging styles of units in real estate developments
+                                    </div>
+                                </div>
+                            </div>
+        			
+        		</div>
+        	</div>
+        </field>
+      </record>
+      
+</odoo>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_search_view_real_estate" model="ir.ui.view">
+        <field name="name">product.template.search.realestate</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='consumable']" position="after">
+                <separator/>
+                <filter string="Real Estate" name="Real Estate" domain="[('type', '=', 'estate')]"/>
+            </xpath>
+        </field>
+    </record>
+    
+        <!-- only website module template view should use the website_sequence -->
+    <record model="ir.ui.view" id="product_template_view_tree_real_estate">
+        <field name="name">product.template.view.tree.website_sale</field>
+        <field name="mode">primary</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+        <tree string="Order in Portal">
+             <field name="real_estate_sequence" widget="handle"/>
+              <field name="name"/>
+              <field name="development_id"/>
+              <field name="real_estate_type_id"/>
+         </tree>
+        </field>
+    </record>
+    
+
+  <record id="product_template_real_estate_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.real_estate.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">              	
+        <!--    <div name="button_box" position="inside">
+                <field name="is_published" widget="website_redirect_button" attrs="{'invisible': [('sale_ok','=',False)]}"/>
+            </div>  --> 
+            	<page  name="general_information" position="after"> 
+            		<page string="Real Estate" groups="real_estate.group_real_estate_user,real_estate.group_real_estate_manager">
+	            		<group>
+	            			<group>
+                                <field name="sale_mode"/>
+	            				<field name="real_estate_type_id"/>
+	            				<field name="development_id"/>
+	            			</group>
+	            			<group>
+	            				<field name="visibility"/>
+                				<field name="website_published"/>
+	            			</group>
+	            		</group>
+            			<group > 
+            				 <group>
+			 				  	<field name="lot"/>
+				 				 <field name="area" />
+			 				    <field name="floor"/>
+				 				 <field name="storeys"/>
+		 				 </group>   
+		 				  <group>
+		 				  		
+	            				<field name="environments_ids" widget="many2many_tags"
+                       options="{'color_field': 'color', 'no_create_edit': True}"/>
+			 				   <field name="beds"/>
+			 				    <field name="master_suite"/>
+			 				  <field name="baths"/>
+			 				  <field name="hbaths"/>
+		 				  </group>  
+						 <group>
+				 				<field name="balcony"/>
+				 				<field name="terrace"/>
+		 				  	    <field name="service_yard"/>
+		 				  </group>
+		 				  <group>
+				 				<field name="garden"/>
+				 				<field name="roof_garden"/>
+		 				  	    <field name="storage"/>
+			 				  <field name="parking"/>
+		 				  </group>
+            			</group>
+            		</page>
+            	</page> 
+            </field>
+    </record>
+    
+        <record id="product_template_action_real_estate" model="ir.actions.act_window">
+        <field name="name">Units</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="view_id" ref="product_template_view_tree_real_estate"/>
+        <field name="search_view_id" ref="product_template_search_view_real_estate"/>
+        <field name="domain">[('sale_mode','in',['only','many'])]</field>
+        <field name="context">{'default_sale_mode': 'only'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product
+            </p><p>
+                A product can be either a physical product or a service that you sell to your customers.
+            </p>
+        </field>
+    </record>
+    
+     <menuitem id="real_state_product_menu"
+            name="Units"
+            parent="real_estate_menu_estates"
+            action="product_template_action_real_estate"
+            sequence="2"/>       
+
+
+</odoo>
