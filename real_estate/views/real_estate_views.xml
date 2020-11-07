@@ -232,8 +232,6 @@
                 					<field name="state_id"/>
                 					<field name="country_id"/>
                 					<field name="zip"/>
-                					<field name="latitude"/>
-                					<field name="longitude"/>
                                     <field name="zoom"/>
                 					<field name="currency_id"/>
                 					<field name="website_id"/>
@@ -251,10 +249,21 @@
                 					<field name="user_id"/>
                 					<field name="website_published"/>
                 				</group>
+                                <group>
+                                    <button
+                                        string="Geolocate"
+                                        name="geo_localize"
+                                        colspan="2"
+                                        icon="fa-check"
+                                        type="object"/>
+                                    <field name="date_localization"/>
+                					<field name="latitude"/>
+                					<field name="longitude"/>
+                                </group>
                 			</group>
                 		 <notebook>
                 		 	<page string="Units"  autofocus="autofocus" name="units">
-                		 		<field name="units_ids" mode="kanban" context="{'default_development_id': active_id, 'default_user_id': user_id, 'default_type': 'estate'}">
+                		 		<field name="units_ids" mode="kanban" context="{'default_development_id': active_id, 'default_user_id': user_id, 'default_type': 'product', 'default_sale_mode':'many'}">
                 		 			<kanban>    
                 		 				<field name="id"/>                  		 				
                                     	<field name="color"/>          		 				

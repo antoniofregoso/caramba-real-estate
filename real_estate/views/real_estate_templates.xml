@@ -22,11 +22,11 @@
 		  </ol>
 		  </nav>
     <div class="row">
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 ">
     		<div class="row bg-beta pt32 pb32">
     			<div class="col-md-6">
-    			<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values['offer']" /></small></h2>
-    			<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values['state']" /></small></h2>
+    			<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values[development.offer]" /></small></h2>
+    			<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values[development.state]" /></small></h2>
     				 <h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
     				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_to" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
     			</div>
@@ -35,7 +35,7 @@
     				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
     				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
     				<t t-else=""><i class="re-gold  fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
-	    			<h2  t-esc="web_values['type']"/>
+	    			<h2  t-esc="web_values[development.development_type]"/>
 	    			<h2><small>Delivery: </small>
 	    			<t t-if="development.immediate_delivery">Inmediate</t>
 	    			<t t-else="" t-options="{'widget': 'date'}"><t t-esc="development.delivery_date" /></t>
@@ -70,21 +70,29 @@
     			</div>
     		</div>
 
-			<section class="s_google_map pt256 pb256" data-map-type="ROADMAP" data-map-color="" data-map-zoom="12" data-map-gps="(50.854975,4.3753899)" data-pin-style="flat">
+			<section class="s_google_map pt256 pb256" t-att-data-map-type="website.re_map_type"  t-att-data-pin-style="website.re_map_pin_style" t-att-data-map-color="website.re_map_color" t-att-data-map-zoom="development.zoom" t-att-data-map-gps="'({},{})'.format(development.latitude, development.longitude )">
 				<div class="map_container"/>
 			</section>
     		<section>
+				<h3 class="mt-4">Description</h3>
     			 <div t-field="development.description" class="oe_structure" name="development-description" />
     		</section>
     		<!-- Start Swipper -->
     		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation" data-container=".re-units">
-		    <div class="swiper-container re-units" id="swiper-container" >
+		    	<h3 class="mt-4">Units</h3>
+			<div class="swiper-container re-units" id="swiper-container" >
 		    	<div class="swiper-wrapper">
 		    		<t t-foreach="development.units_ids" t-as="unit">
 		    			 	 <div class="swiper-slide card" style="overflow:hidden;">		    			 	 
 		    			 	 	<div class="card-header bg-beta">
-		    			 	 	<t t-if="website.re_sold_ribbon and unit.re_sold">
-		    			 	 	<div class="re-corner-ribbon top-right sticky bg-warning shadow">Sold</div>
+		    			 	 	<t t-if="website.re_sold_ribbon and unit.visibility=='sold'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-danger shadow">Sold</div>
+		    			 	 	</t>
+								<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-warning shadow">Aside</div>
+		    			 	 	</t>
+								<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-success shadow"><span t-esc="int(unit.qty_available)"/> Left</div>
 		    			 	 	</t>
 		    			 	 	<h2 class="card-title " t-esc="unit.name" />
 		    			 	 		<h3 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h3>
@@ -106,7 +114,7 @@
 								  </ul>
 								  </div>
 		    			 	 	 <div class="card-footer">
-		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.re_sold==True and website.re_disable_sold==True else ''}" >See information</a>
+		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.visibility!='normal' and website.re_disable_sold==True else ''}" >See information</a>
 		    			 	 	 </div>
 		    			 	</div>
 		    			 </t>
@@ -209,8 +217,8 @@
     <div class="col-md-8 col-sm-12">
     		<div class="row bg-beta pt32 pb32">
     			<div class="col-md-6">
-    				<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values['offer']" /></small></h2>
-    				<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values['state']" /></small></h2>
+    				<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values[development.offer]" /></small></h2>
+    				<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values[development.state]" /></small></h2>
     				 <h2 t-if="unit.list_price"><t t-esc="unit.list_price" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
     				  <h2 t-if="unit.area>0"><t t-esc="unit.area" /> m2</h2>
     			</div>
@@ -254,6 +262,15 @@
     			</div>
     		</div>
     		<section>
+				<t t-if="website.re_sold_ribbon and unit.visibility=='sold'">
+		    		<div class="alert alert-danger text-center">Sold</div>
+		    	</t>
+				<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
+		    		<div class="alert alert-warning text-center">Aside</div>
+		    	</t>
+				<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
+		    		<div class="alert alert-success text-center"><span t-esc="int(unit.qty_available)"/> Left</div>
+		    	</t>
     			 <div t-field="unit.real_estate_description" class="oe_structure" id="development-description" />
     		</section>
     		<section id="unit_data">    			

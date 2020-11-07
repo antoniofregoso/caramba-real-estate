@@ -68,6 +68,7 @@ class RealEstateDevelopment(models.Model):
     city = fields.Char()
     state_id = fields.Many2one("res.country.state", string='State', ondelete='restrict', domain="[('country_id', '=?', country_id)]")
     country_id = fields.Many2one('res.country', string='Country', ondelete='restrict')
+    date_localization = fields.Date(string='Geolocation Date')
     latitude = fields.Float(string='Geo Latitude', digits=(16, 5))
     longitude = fields.Float(string='Geo Longitude', digits=(16, 5))
     zoom = fields.Integer(string='Zoom Map', default=12)
@@ -104,6 +105,33 @@ class RealEstateDevelopment(models.Model):
             vals['price_to'] = max(prices)  
         res = super(RealEstateDevelopment, self).write(vals)
         return res
+
+    @api.model
+    def _geo_localize(self, street='', zip='', city='', state='', country=''):
+        geo_obj = self.env['base.geocoder']
+        search = geo_obj.geo_query_address(street=street, zip=zip, city=city, state=state, country=country)
+        result = geo_obj.geo_find(search, force_country=country)
+        if result is None:
+            search = geo_obj.geo_query_address(city=city, state=state, country=country)
+            result = geo_obj.geo_find(search, force_country=country)
+        return result
+
+    def geo_localize(self):
+        # We need country names in English below
+        for partner in self.with_context(lang='en_US'):
+            result = self._geo_localize(partner.street,
+                                        partner.zip,
+                                        partner.city,
+                                        partner.state_id.name,
+                                        partner.country_id.name)
+
+            if result:
+                partner.write({
+                    'latitude': result[0],
+                    'longitude': result[1],
+                    'date_localization': fields.Date.context_today(partner)
+                })
+        return True
 
     
 

@@ -9,7 +9,7 @@
         	<div id="webmaster_settings" position="after">
         		<h2>Real Estate</h2>
         		<div class="row mt16 o_settings_container" id="real_estate_settings">
-        			 <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+        			        <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
                                 <div class="o_setting_left_pane">
                                     <field name="re_sold_ribbon"/>
                                 </div>
@@ -17,6 +17,17 @@
                                     <label for="re_sold_ribbon"/>
                                     <div class="text-muted">
                                         Show a ribbon on sold properties
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-12 col-lg-6 o_setting_box" groups="real_estate.group_real_estate_manager">
+                                <div class="o_setting_left_pane">
+                                    <field name="re_stock_ribbon"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="re_stock_ribbon"/>
+                                    <div class="text-muted">
+                                        Show a ribbon with the number of units for sale
                                     </div>
                                 </div>
                             </div>

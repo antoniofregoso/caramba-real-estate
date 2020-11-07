@@ -9,11 +9,11 @@
     'author': "Antonio Fregoso",
     'website': "https://www.antoniofregoso.com",
 
-    'category': 'Real Estate',
+    'category': 'Real Estate/Real Estate',
     'version': '0.0.0',
     'license': 'AGPL-3',
 
-    'depends': ['website_crm', 'website_sale'],
+    'depends': ['website_crm', 'website_sale', 'sale_stock', 'base_geolocalize'],
 
 
     'data': [
@@ -30,4 +30,7 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'installable': True,
+    'application': True,
+    'auto_install': False
 }
