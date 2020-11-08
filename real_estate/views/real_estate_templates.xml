@@ -2,7 +2,7 @@
 <odoo>
 
 
-<template id="real_state_development_content" name="Real Estate Development Content">  
+<template id="real_estate_development_content" name="Real Estate Development Content">  
 	<t t-call="website.layout">
     <div id="wrap">
 		 <section class="pt32 pb32 container-fluid">
@@ -16,26 +16,50 @@
     </section>
      <section class="container">     
 	     <nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-		    <li class="breadcrumb-item"><a href="#">Home</a></li>
-		    <li class="breadcrumb-item" t-esc="development.name" />
+		  <ol class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList">
+		    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem">
+				<a href="/" itemprop="item" >
+					<span itemprop="name">Home</span>
+				</a>
+				<meta itemprop="position" content="1" />
+			</li>
+		    <li class="breadcrumb-item"  itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem">
+				<span t-esc="development.name" itemprop="name"/>
+				<meta itemprop="position" content="2" />
+			</li>
+
 		  </ol>
 		  </nav>
     <div class="row">
-    <div class="col-md-8 col-sm-12 ">
+    <div class="col-md-8 col-sm-12">
     		<div class="row bg-beta pt32 pb32">
     			<div class="col-md-6">
     			<h2 t-if="development.offer=='rent'"><small><t t-esc="web_values[development.offer]" /></small></h2>
     			<h2 t-if="development.offer=='sale'" class="text-left"><small><t t-esc="web_values[development.state]" /></small></h2>
-    				 <h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
-    				 <h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_to" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+					<t t-if="len(development.units_ids)==1">
+						<t t-foreach="development.units_ids" t-as="unit">
+							<h2 t-if="unit.list_price"><t t-esc="unit.list_price" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+    				  		<h2 t-if="unit.area>0"><t t-esc="unit.area" /> m2</h2>
+						</t>
+					</t>
+					<t t-else="">
+						<h2 t-if="development.price_from"><span class="small">From: </span><t t-esc="development.price_from" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+						<h2 t-if="development.price_to"><span class="small">To: </span><t t-esc="development.price_to" t-options='{"widget": "monetary", "display_currency":development.currency_id}'/></h2>
+					</t>
     			</div>
     			<div class="col-md-6 text-right">  
     				<t t-if="development.priority=='0'"><i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t>
     				<t t-elif="development.priority=='1'"><i class="re-bronze fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /> <i class="fa fa-1x fa-star-o" /></t> 	
     				<t t-elif="development.priority=='2'"><i class="re-silver fa fa-1x fa-star" /> <i class="re-silver fa fa-1x fa-star" /> <i class="fa fa-1x fa-star-o" /></t> 	
     				<t t-else=""><i class="re-gold  fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /> <i class="re-gold fa fa-1x fa-star" /></t> 				 				
-	    			<h2  t-esc="web_values[development.development_type]"/>
+	    			<t t-if="len(development.units_ids)==1">
+						<t t-foreach="development.units_ids" t-as="unit">
+							<h2  t-esc="unit.real_estate_type_id.name"/>
+						</t>
+					</t>
+					<t t-else="">
+						<h2  t-esc="web_values[development.development_type]"/>
+					</t>
 	    			<h2><small>Delivery: </small>
 	    			<t t-if="development.immediate_delivery">Inmediate</t>
 	    			<t t-else="" t-options="{'widget': 'date'}"><t t-esc="development.delivery_date" /></t>
@@ -63,69 +87,45 @@
 			     </t>
 			     <t t-if="development.services_ids">
     			 <h3>Services</h3>
-			     <t t-foreach="development.services_ids" t-as="i">
-			     	<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+					<t t-foreach="development.services_ids" t-as="i">
+						<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+					</t>
 			     </t>
-			     </t>
+				 <t t-if="len(development.units_ids)==1">
+				 	<t t-foreach="development.units_ids" t-as="unit">
+					 	<t t-if="unit.environments_ids">
+							<h3>Environments</h3>
+							<t t-foreach="unit.environments_ids" t-as="i">
+								<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+							</t>
+							</t>
+							<t t-if="development.services_ids">
+							<h3>Services</h3>
+							<t t-foreach="development.services_ids" t-as="i">
+								<span class="badge badge-pill badge-secondary" t-esc="i.name"/>
+							</t>
+						</t>
+					</t>
+				 </t>
     			</div>
     		</div>
 
-			<section class="s_google_map pt256 pb256" t-att-data-map-type="website.re_map_type"  t-att-data-pin-style="website.re_map_pin_style" t-att-data-map-color="website.re_map_color" t-att-data-map-zoom="development.zoom" t-att-data-map-gps="'({},{})'.format(development.latitude, development.longitude )">
+			<section class="s_google_map pt256 pb256 px-1" t-att-data-map-type="website.re_map_type"  t-att-data-pin-style="website.re_map_pin_style" t-att-data-map-color="website.re_map_color" t-att-data-map-zoom="development.zoom" t-att-data-map-gps="'({},{})'.format(development.latitude, development.longitude )">
 				<div class="map_container"/>
 			</section>
     		<section>
 				<h3 class="mt-4">Description</h3>
     			 <div t-field="development.description" class="oe_structure" name="development-description" />
-    		</section>
-    		<!-- Start Swipper -->
-    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation" data-container=".re-units">
-		    	<h3 class="mt-4">Units</h3>
-			<div class="swiper-container re-units" id="swiper-container" >
-		    	<div class="swiper-wrapper">
-		    		<t t-foreach="development.units_ids" t-as="unit">
-		    			 	 <div class="swiper-slide card" style="overflow:hidden;">		    			 	 
-		    			 	 	<div class="card-header bg-beta">
-		    			 	 	<t t-if="website.re_sold_ribbon and unit.visibility=='sold'">
-		    			 	 		<div class="re-corner-ribbon top-right sticky bg-danger shadow">Sold</div>
-		    			 	 	</t>
-								<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
-		    			 	 		<div class="re-corner-ribbon top-right sticky bg-warning shadow">Aside</div>
-		    			 	 	</t>
-								<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
-		    			 	 		<div class="re-corner-ribbon top-right sticky bg-success shadow"><span t-esc="int(unit.qty_available)"/> Left</div>
-		    			 	 	</t>
-		    			 	 	<h2 class="card-title " t-esc="unit.name" />
-		    			 	 		<h3 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h3>
-	    	 						<div class="re-price-container">
-		    	 						<div class="re-price">
-						    	 			<span class="re-money-sign">$</span>
-						    	 			<span class="re-money" t-esc="'{:,}'.format(int(unit.list_price))"/>
-						    	 			<span class="re-cents" t-raw="'.' + str(round(unit.list_price - int(unit.list_price), 2)).replace('0.','').ljust(2,'0')"/>
-						    	 		</div>
-						    	 	</div>
-		    			 	 	</div>
-		    			 	 	
-		    			 	  <div class="card-body ">
-		    			 	 	 <ul class="list-group list-group-flush text-left">
-								    <li class="list-group-item pl-5">Surface: <t t-esc="unit.area" /> m2</li>
-								    <li class="list-group-item pl-5">Bedrooms: <t t-esc="unit.beds" /></li>
-								    <li t-if="unit.master_suite>0" class="list-group-item pl-5">Master Suite: <t t-esc="unit.master_suite" /></li>
-								    <li t-if="unit.parking>0" class="list-group-item pl-5">Parking Places: <t t-esc="unit.parking" /></li>
-								  </ul>
-								  </div>
-		    			 	 	 <div class="card-footer">
-		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.visibility!='normal' and website.re_disable_sold==True else ''}" >See information</a>
-		    			 	 	 </div>
-		    			 	</div>
-		    			 </t>
-		    	</div>
-		    	 <div t-if="website.re_navigation" class="swiper-button-next"></div>
-   				<div  t-if="website.re_navigation" class="swiper-button-prev"></div>
-		    	<div t-if="website.re_pagination != 'none' and website.re_pagination != 'scrollbar'" class="swiper-pagination"></div>
-		    	<div t-if="website.re_pagination=='scrollbar'" class="swiper-scrollbar"></div>
-		    </div>
-		    <!-- End Swipper -->
-		    </section>
+    		</section>			
+			 	<t t-if="len(development.units_ids)==1">
+				 	<t t-foreach="development.units_ids" t-as="unit">
+						<t t-call="real_estate.real_estate_unit_content_sub_template"/>
+					</t>
+				</t>
+				<t t-else="">
+					<t t-call="real_estate.real_estate_development_content_sub_template"/>
+				</t>
+    		
     </div>
      <div class="col-md-4 col-sm-12">
      <div id="card-share" class="card mb32 shadow-sm" >
@@ -193,7 +193,7 @@
 
 <!--  Real Estate Unit -->
 
-<template id="real_state_unit_content" name="Real Estate Unit Content">  
+<template id="real_estate_unit_content" name="Real Estate Unit Content">  
 	<t t-call="website.layout">
     <div id="wrap">
 		 <section class="pt32 pb32 container-fluid">
@@ -207,10 +207,23 @@
     </section>
      <section class="container">
      <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a t-att-href="development.website_url" t-esc="development.name" /></li>
-    <li class="breadcrumb-item active" aria-current="page" t-esc="unit.name" />
+  <ol class="breadcrumb" itemscope="itemscope" itemtype="https://schema.org/BreadcrumbList">
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem">
+		<a href="/" itemprop="item" >
+			<span itemprop="name">Home</span>
+		</a>
+		<meta itemprop="position" content="1" />
+	</li>
+    <li class="breadcrumb-item">
+		<a t-att-href="development.website_url" itemprop="item" >
+			<span t-esc="development.name" itemprop="name"/>
+		</a>
+		<meta itemprop="position" content="2" />
+	</li>
+    <li class="breadcrumb-item active" aria-current="page"  itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem">
+		<span t-esc="unit.name" itemprop="name"/>
+		<meta itemprop="position" content="3" />
+	</li>
   </ol>
 </nav>
     <div class="row">
@@ -273,72 +286,7 @@
 		    	</t>
     			 <div t-field="unit.real_estate_description" class="oe_structure" id="development-description" />
     		</section>
-    		<section id="unit_data">    			
-			    <div class="row">
-			    	<div class="col-12 col-lg-6">
-			    		<h2>Features</h2>
-			    		<table class="table table-striped">
-			    			  <tbody>
-			    			  	<tr t-if="unit.floor">
-			    			  		<td >Floor</td><td t-esc="unit.floor"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.storeys">
-			    			  		<td >Storeys</td><td t-esc="unit.storeys"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.beds">
-			    			  		<td >Bedrooms</td><td t-esc="unit.beds"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.master_suite">
-			    			  		<td >Master Suites</td><td t-esc="unit.master_suite"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.baths">
-			    			  		<td >Bathrooms</td><td t-esc="unit.baths"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.hbaths">
-			    			  		<td >Half Bathrooms</td><td t-esc="unit.hbaths"></td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.parking">
-			    			  		<td >Parking Places</td><td t-esc="unit.parking"></td>
-			    			  	</tr>
-			    			  </tbody>
-			    		</table>
-			    	</div>
-			    	<div class="col-12 col-lg-6">
-			    		<h2>Measurements</h2>			    		
-			    		<table class="table table-striped">
-			    			  <tbody>
-			    			  	<tr t-if="unit.area">
-			    			  		<td >Builded Surface</td><td t-esc="unit.area" /><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.lot">
-			    			  		<td >Total Area</td><td t-esc="unit.lot"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.storeys">
-			    			  		<td >Storeys</td><td t-esc="unit.storeys"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.balcony">
-			    			  		<td >Balcony</td><td t-esc="unit.balcony"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.terrace">
-			    			  		<td >terrace</td><td t-esc="unit.terrace"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.garden">
-			    			  		<td >Garden</td><td t-esc="unit.garden"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.roof_garden">
-			    			  		<td >Roof Garden</td><td t-esc="unit.roof_garden"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.storage">
-			    			  		<td >Storage</td><td t-esc="unit.storage"/><td> m2</td>
-			    			  	</tr>
-			    			  	<tr t-if="unit.service_yard">
-			    			  		<td >Service Yard</td><td t-esc="unit.service_yard"/><td> m2</td>
-			    			  	</tr>
-			    			  </tbody>
-			    		</table>
-			    	</div>
-			    </div>
-    		</section>
+			<t t-call="real_estate.real_estate_unit_content_sub_template"/>
     </div>
      <div class="col-md-4 col-sm-12">
      <div id="card-share" class="card mb32 shadow-sm" >
@@ -402,5 +350,128 @@
     </t>
 </template>
 
+<!-- Unit sub template -->
+
+<template id="real_estate_unit_content_sub_template" name="Real Estate Unit Content subtemplate">  
+    		<section id="unit_data">    			
+			    <div class="row">
+			    	<div class="col-12 col-lg-6">
+			    		<h3>Features</h3>
+			    		<table class="table table-striped">
+			    			  <tbody>
+			    			  	<tr t-if="unit.floor">
+			    			  		<td >Floor</td><td t-esc="unit.floor"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storeys">
+			    			  		<td >Storeys</td><td t-esc="unit.storeys"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.beds">
+			    			  		<td >Bedrooms</td><td t-esc="unit.beds"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.master_suite">
+			    			  		<td >Master Suites</td><td t-esc="unit.master_suite"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.baths">
+			    			  		<td >Bathrooms</td><td t-esc="unit.baths"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.hbaths">
+			    			  		<td >Half Bathrooms</td><td t-esc="unit.hbaths"></td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.parking">
+			    			  		<td >Parking Places</td><td t-esc="unit.parking"></td>
+			    			  	</tr>
+			    			  </tbody>
+			    		</table>
+			    	</div>
+			    	<div class="col-12 col-lg-6">
+			    		<h3>Measurements</h3>			    		
+			    		<table class="table table-striped">
+			    			  <tbody>
+			    			  	<tr t-if="unit.area">
+			    			  		<td >Builded Surface</td><td t-esc="unit.area" /><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.lot">
+			    			  		<td >Total Area</td><td t-esc="unit.lot"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storeys">
+			    			  		<td >Storeys</td><td t-esc="unit.storeys"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.balcony">
+			    			  		<td >Balcony</td><td t-esc="unit.balcony"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.terrace">
+			    			  		<td >terrace</td><td t-esc="unit.terrace"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.garden">
+			    			  		<td >Garden</td><td t-esc="unit.garden"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.roof_garden">
+			    			  		<td >Roof Garden</td><td t-esc="unit.roof_garden"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.storage">
+			    			  		<td >Storage</td><td t-esc="unit.storage"/><td> m2</td>
+			    			  	</tr>
+			    			  	<tr t-if="unit.service_yard">
+			    			  		<td >Service Yard</td><td t-esc="unit.service_yard"/><td> m2</td>
+			    			  	</tr>
+			    			  </tbody>
+			    		</table>
+			    	</div>
+			    </div>
+    		</section>
+</template>
+
+
+<template id="real_estate_development_content_sub_template" name="Real Estate Unit Content subtemplate">  
+	<!-- Start Swipper -->
+    		<section id="swiper-coverflow" t-att-data-pagination="website.re_pagination" t-att-data-navigation="website.re_navigation" data-container=".re-units">
+		    	<h3 class="mt-4">Units</h3>
+			<div class="swiper-container re-units" id="swiper-container" >
+		    	<div class="swiper-wrapper">
+		    		<t t-foreach="development.units_ids" t-as="unit">
+		    			 	 <div class="swiper-slide card" style="overflow:hidden;">		    			 	 
+		    			 	 	<div class="card-header bg-beta">
+		    			 	 	<t t-if="website.re_sold_ribbon and unit.visibility=='sold'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-danger shadow">Sold</div>
+		    			 	 	</t>
+								<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-warning shadow">Aside</div>
+		    			 	 	</t>
+								<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
+		    			 	 		<div class="re-corner-ribbon top-right sticky bg-success shadow"><span t-esc="int(unit.qty_available)"/> Left</div>
+		    			 	 	</t>
+		    			 	 	<h2 class="card-title " t-esc="unit.name" />
+		    			 	 		<h3 class="card-text" ><spam t-esc="unit.real_estate_type_id.name"/></h3>
+	    	 						<div class="re-price-container">
+		    	 						<div class="re-price">
+						    	 			<span class="re-money-sign">$</span>
+						    	 			<span class="re-money" t-esc="'{:,}'.format(int(unit.list_price))"/>
+						    	 			<span class="re-cents" t-raw="'.' + str(round(unit.list_price - int(unit.list_price), 2)).replace('0.','').ljust(2,'0')"/>
+						    	 		</div>
+						    	 	</div>
+		    			 	 	</div>
+		    			 	 	
+		    			 	  <div class="card-body ">
+		    			 	 	 <ul class="list-group list-group-flush text-left">
+								    <li class="list-group-item pl-5">Surface: <t t-esc="unit.area" /> m2</li>
+								    <li class="list-group-item pl-5">Bedrooms: <t t-esc="unit.beds" /></li>
+								    <li t-if="unit.master_suite>0" class="list-group-item pl-5">Master Suite: <t t-esc="unit.master_suite" /></li>
+								    <li t-if="unit.parking>0" class="list-group-item pl-5">Parking Places: <t t-esc="unit.parking" /></li>
+								  </ul>
+								  </div>
+		    			 	 	 <div class="card-footer">
+		    			 	 	 	<a t-att-href="unit.website_url" t-attf-class="btn btn-primary #{'disabled' if unit.visibility!='normal' and website.re_disable_sold==True else ''}" >See information</a>
+		    			 	 	 </div>
+		    			 	</div>
+		    			 </t>
+		    	</div>
+		    	 <div t-if="website.re_navigation" class="swiper-button-next"></div>
+   				<div  t-if="website.re_navigation" class="swiper-button-prev"></div>
+		    	<div t-if="website.re_pagination != 'none' and website.re_pagination != 'scrollbar'" class="swiper-pagination"></div>
+		    	<div t-if="website.re_pagination=='scrollbar'" class="swiper-scrollbar"></div>
+		    </div>
+		    <!-- End Swipper -->
+		    </section>
+</template>
 
 </odoo>

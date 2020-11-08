@@ -29,7 +29,7 @@ class WebsiteRealEstate(http.Controller):
                 'stopped':_('Stopped'),
                 'cancel':_('Cancelled'),
                 }}
-        return request.render("real_estate.real_state_development_content", values)
+        return request.render("real_estate.real_estate_development_content", values)
     
     @http.route([
         '''/real-estate/development/<model("real_estate.development"):development>/unit/<model("product.template"):unit>'''
@@ -54,5 +54,5 @@ class WebsiteRealEstate(http.Controller):
                 'stopped':_('Stopped'),
                 'cancel':_('Cancelled'),
                 }}
-        return  request.render("real_estate.real_state_unit_content", values)
+        return  request.render("real_estate.real_estate_unit_content", values)
     
