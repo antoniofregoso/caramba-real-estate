@@ -6,16 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-08 04:22+0000\n"
-"PO-Revision-Date: 2020-11-07 22:24-0600\n"
+"POT-Creation-Date: 2020-11-09 21:28+0000\n"
+"PO-Revision-Date: 2020-11-09 21:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.3\n"
 
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_develpment_view_kanban
@@ -129,7 +127,7 @@ msgstr "Cuenta de archivos adjuntos"
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_product_product__balcony
 #: model:ir.model.fields,field_description:real_estate.field_product_template__balcony
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_1
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_1
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_unit_content_sub_template
 msgid "Balcony"
 msgstr "Balcón"
@@ -169,9 +167,14 @@ msgid "Blue"
 msgstr "Azul"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_5
+#: model:real_estate.service,name:real_estate.real_estate_service_opt_2
+msgid "Boiler"
+msgstr "Calentador de agua"
+
+#. module: real_estate
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_5
 msgid "Breakfast room"
-msgstr "Sala de desayuno"
+msgstr "Desayunador"
 
 #. module: real_estate
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__priority__1
@@ -201,9 +204,7 @@ msgid "Can Publish"
 msgstr "Puede publicar"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__cancel
-#, python-format
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -233,7 +234,7 @@ msgid "City"
 msgstr "Ciudad"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_12
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_12
 msgid "Closets"
 msgstr "Armarios"
 
@@ -250,9 +251,7 @@ msgid "Color Index"
 msgstr "Indice de color"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__development_type__commercial
-#, python-format
 msgid "Commercial Real Estate"
 msgstr "Inmueble Comercial"
 
@@ -364,7 +363,7 @@ msgid "Developments"
 msgstr "Desarrollos"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_3
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_3
 msgid "Dining room"
 msgstr "Comedor"
 
@@ -399,14 +398,12 @@ msgid "Dots"
 msgstr "Puntos"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__draft
-#, python-format
 msgid "Draft"
 msgstr "Borrador"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_14
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_14
 msgid "Dressing room"
 msgstr "Vestidor"
 
@@ -497,16 +494,12 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__offer__rent
-#, python-format
 msgid "For Rent"
 msgstr "En renta"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__offer__sale
-#, python-format
 msgid "For Sale"
 msgstr "En venta"
 
@@ -528,7 +521,7 @@ msgstr "De"
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_product_product__garden
 #: model:ir.model.fields,field_description:real_estate.field_product_template__garden
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_8
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_8
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_unit_content_sub_template
 msgid "Garden"
 msgstr "Jardín"
@@ -588,7 +581,7 @@ msgstr "Casa"
 #. module: real_estate
 #: model:ir.model.fields.selection,name:real_estate.selection__website__re_map_type__hybrid
 msgid "Hybrid"
-msgstr "Estoy interesado"
+msgstr "Híbrido"
 
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_development_content
@@ -636,9 +629,7 @@ msgid "Immediate Delivery"
 msgstr "Entrega Inmediata"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__development_type__industrial
-#, python-format
 msgid "Industrial Real Estate"
 msgstr "Bienes inmuebles industriales"
 
@@ -679,15 +670,13 @@ msgid "Kanban Color Index"
 msgstr "Índice de color Kanban"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_2
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_2
 msgid "Kitchen"
 msgstr "Cocina"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__development_type__land
 #: model:real_estate.type,name:real_estate.real_estate_type_opt_8
-#, python-format
 msgid "Land"
 msgstr "Terreno"
 
@@ -727,9 +716,9 @@ msgid "Laundry"
 msgstr "Lavandería"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_9
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_9
 msgid "Laundry room"
-msgstr "Cuarto de lavado"
+msgstr "Cuarto de Lavado"
 
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_development_content_sub_template
@@ -753,7 +742,7 @@ msgid "Lilla"
 msgstr "Lila"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_10
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_10
 msgid "Living room"
 msgstr "Sala"
 
@@ -838,9 +827,7 @@ msgid "Meta Title"
 msgstr "Meta título"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__development_type__mixed
-#, python-format
 msgid "Mixed Real Estate"
 msgstr "Bienes inmuebles mixtos"
 
@@ -858,6 +845,11 @@ msgstr "Salón de Usos Múltiples"
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_develpment_view_form
 msgid "Name"
 msgstr "Nombre"
+
+#. module: real_estate
+#: model:real_estate.service,name:real_estate.real_estate_service_opt_3
+msgid "Natural gas"
+msgstr "Gas natural"
 
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_res_config_settings__re_navigation
@@ -888,7 +880,7 @@ msgstr "Ninguno"
 #. module: real_estate
 #: model:ir.model.fields.selection,name:real_estate.selection__product_template__visibility__normal
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_real_estate_development__message_needaction_counter
@@ -937,16 +929,12 @@ msgid "Office"
 msgstr "Oficina"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__onpresale
-#, python-format
 msgid "On Presale"
 msgstr "Preventa"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__onsale
-#, python-format
 msgid "On Sale"
 msgstr "En Venta"
 
@@ -999,12 +987,12 @@ msgid "Phone Number"
 msgstr "Teléfono"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_15
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_15
 msgid "Play room"
-msgstr "Salón de Juegos"
+msgstr "Cuerto de Juegos"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_11
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_11
 msgid "Playground"
 msgstr "Patio de recreo"
 
@@ -1091,9 +1079,7 @@ msgid "Reporting"
 msgstr "Informes"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__development_type__residential
-#, python-format
 msgid "Residential Real Estate"
 msgstr "Inmueble Residencial"
 
@@ -1120,17 +1106,17 @@ msgstr ""
 #. module: real_estate
 #: model:ir.model.fields.selection,name:real_estate.selection__website__re_map_type__roadmap
 msgid "RoadMap"
-msgstr "Avenidas"
+msgstr "Mapa de Ruta"
 
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_product_product__roof_garden
 #: model:ir.model.fields,field_description:real_estate.field_product_template__roof_garden
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_unit_content_sub_template
 msgid "Roof Garden"
-msgstr ""
+msgstr "Jardín de Techo"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_16
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_16
 msgid "Roof garden"
 msgstr "Jardín de techo"
 
@@ -1140,9 +1126,14 @@ msgid "Room"
 msgstr "Habitación"
 
 #. module: real_estate
+#: model:real_estate.service,name:real_estate.real_estate_service_opt_1
+msgid "Running water"
+msgstr "Agua corriente"
+
+#. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_develpment_view_form
 msgid "SEO"
-msgstr "SEO"
+msgstr ""
 
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_real_estate_development__is_seo_optimized
@@ -1209,11 +1200,6 @@ msgid "Service Yard"
 msgstr "Patio de servicio"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_4
-msgid "Service room"
-msgstr "Cuarto de servicio"
-
-#. module: real_estate
 #: model:ir.actions.act_window,name:real_estate.action_real_estate_service_view_form
 #: model:ir.model.fields,field_description:real_estate.field_real_estate_development__services_ids
 #: model:ir.ui.menu,name:real_estate.real_estate_menu_service
@@ -1245,12 +1231,10 @@ msgid "Silver"
 msgstr "Plata"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__product_template__visibility__sold
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__sold
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_development_content_sub_template
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_unit_content
-#, python-format
 msgid "Sold"
 msgstr "Vendido"
 
@@ -1290,9 +1274,7 @@ msgid "Stock Ribbon"
 msgstr "Cinta Disponibles"
 
 #. module: real_estate
-#: code:addons/real_estate/controllers/main.py:0
 #: model:ir.model.fields.selection,name:real_estate.selection__real_estate_development__state__stopped
-#, python-format
 msgid "Stopped"
 msgstr "Detenido"
 
@@ -1321,14 +1303,14 @@ msgid "Street2"
 msgstr "Colonia"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_7
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_7
 msgid "Study"
 msgstr "Estudio"
 
 #. module: real_estate
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_6
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_6
 msgid "Suite bedroom"
-msgstr "Master Suite"
+msgstr "Dormitorio suite"
 
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_develpment_view_form
@@ -1356,6 +1338,11 @@ msgid "Tank"
 msgstr "Cisterna"
 
 #. module: real_estate
+#: model:real_estate.service,name:real_estate.real_estate_service_opt_4
+msgid "Telephone line"
+msgstr "Linea Telefónica"
+
+#. module: real_estate
 #: model:real_estate.amenitie,name:real_estate.real_estate_amenitie_opt_11
 msgid "Tennis court"
 msgstr "Pista de tenis"
@@ -1363,7 +1350,7 @@ msgstr "Pista de tenis"
 #. module: real_estate
 #: model:ir.model.fields,field_description:real_estate.field_product_product__terrace
 #: model:ir.model.fields,field_description:real_estate.field_product_template__terrace
-#: model:real_estate.environment,name:real_estate.real_estate_service_opt_13
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_13
 msgid "Terrace"
 msgstr "Terraza"
 
@@ -1517,6 +1504,11 @@ msgstr "Zoom en el Mapa"
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_unit_content
 msgid "breadcrumb"
 msgstr "migas"
+
+#. module: real_estate
+#: model:real_estate.environment,name:real_estate.real_estate_environment_opt_4
+msgid "environment room"
+msgstr "Sala de ambiente"
 
 #. module: real_estate
 #: model_terms:ir.ui.view,arch_db:real_estate.real_estate_development_content

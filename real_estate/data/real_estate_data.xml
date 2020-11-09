@@ -114,52 +114,52 @@
     </record> 
     
     <!--  environment -->
-    <record id="real_estate_service_opt_1" model="real_estate.environment">
+    <record id="real_estate_environment_opt_1" model="real_estate.environment">
     	<field name="name">Balcony</field>
     </record> 
-    <record id="real_estate_service_opt_2" model="real_estate.environment">
+    <record id="real_estate_environment_opt_2" model="real_estate.environment">
     	<field name="name">Kitchen</field>
     </record> 
-    <record id="real_estate_service_opt_3" model="real_estate.environment">
+    <record id="real_estate_environment_opt_3" model="real_estate.environment">
     	<field name="name">Dining room</field>
     </record> 
-    <record id="real_estate_service_opt_4" model="real_estate.environment">
-    	<field name="name">Service room</field>
+    <record id="real_estate_environment_opt_4" model="real_estate.environment">
+    	<field name="name">environment room</field>
     </record> 
-    <record id="real_estate_service_opt_5" model="real_estate.environment">
+    <record id="real_estate_environment_opt_5" model="real_estate.environment">
     	<field name="name">Breakfast room</field>
     </record> 
-    <record id="real_estate_service_opt_6" model="real_estate.environment">
+    <record id="real_estate_environment_opt_6" model="real_estate.environment">
     	<field name="name">Suite bedroom</field>
     </record> 
-    <record id="real_estate_service_opt_7" model="real_estate.environment">
+    <record id="real_estate_environment_opt_7" model="real_estate.environment">
     	<field name="name">Study</field>
     </record> 
-    <record id="real_estate_service_opt_8" model="real_estate.environment">
+    <record id="real_estate_environment_opt_8" model="real_estate.environment">
     	<field name="name">Garden</field>
     </record> 
-    <record id="real_estate_service_opt_9" model="real_estate.environment">
+    <record id="real_estate_environment_opt_9" model="real_estate.environment">
     	<field name="name">Laundry room</field>
     </record> 
-    <record id="real_estate_service_opt_10" model="real_estate.environment">
+    <record id="real_estate_environment_opt_10" model="real_estate.environment">
     	<field name="name">Living room</field>
     </record> 
-    <record id="real_estate_service_opt_11" model="real_estate.environment">
+    <record id="real_estate_environment_opt_11" model="real_estate.environment">
     	<field name="name">Playground</field>
     </record> 
-    <record id="real_estate_service_opt_12" model="real_estate.environment">
+    <record id="real_estate_environment_opt_12" model="real_estate.environment">
     	<field name="name">Closets</field>
     </record> 
-    <record id="real_estate_service_opt_13" model="real_estate.environment">
+    <record id="real_estate_environment_opt_13" model="real_estate.environment">
     	<field name="name">Terrace</field>
     </record> 
-    <record id="real_estate_service_opt_14" model="real_estate.environment">
+    <record id="real_estate_environment_opt_14" model="real_estate.environment">
     	<field name="name">Dressing room</field>
     </record> 
-    <record id="real_estate_service_opt_15" model="real_estate.environment">
+    <record id="real_estate_environment_opt_15" model="real_estate.environment">
     	<field name="name">Play room</field>
     </record> 
-    <record id="real_estate_service_opt_16" model="real_estate.environment">
+    <record id="real_estate_environment_opt_16" model="real_estate.environment">
     	<field name="name">Roof garden</field>
     </record> 
     

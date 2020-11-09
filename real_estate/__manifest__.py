@@ -10,7 +10,7 @@
     'website': "https://www.antoniofregoso.com",
 
     'category': 'Real Estate/Real Estate',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'license': 'AGPL-3',
 
     'depends': ['website_crm', 'website_sale', 'sale_stock', 'base_geolocalize'],

@@ -232,7 +232,6 @@
                 					<field name="state_id"/>
                 					<field name="country_id"/>
                 					<field name="zip"/>
-                                    <field name="zoom"/>
                 					<field name="currency_id"/>
                 					<field name="website_id"/>
                 				</group>
@@ -259,6 +258,7 @@
                                     <field name="date_localization"/>
                 					<field name="latitude"/>
                 					<field name="longitude"/>
+                                    <field name="zoom"/>
                                 </group>
                 			</group>
                 		 <notebook>

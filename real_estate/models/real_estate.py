@@ -59,7 +59,7 @@ class RealEstateDevelopment(models.Model):
     real_estate_sequence = fields.Integer('Portal Sequence')
     state = fields.Selection([
         ('draft', 'Draft'), ('onpresale', 'On Presale'), ('onsale', 'On Sale'), ('sold', 'Sold'), ('stopped','Stopped'), ('cancel', 'Cancelled')],
-        string='Status', default='draft', required=True, copy=False, track_visibility='onchange', group_expand='_expand_states')
+        string='Status', default='draft', required=True, copy=False, group_expand='_expand_states')
     delivery_date = fields.Date('Estimated delivery date', default=date.today())
     immediate_delivery = fields.Boolean(default=False)
     street = fields.Char()

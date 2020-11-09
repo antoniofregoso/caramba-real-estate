@@ -281,7 +281,7 @@
 				<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
 		    		<div class="alert alert-warning text-center">Aside</div>
 		    	</t>
-				<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
+				<t t-if="website.re_stock_ribbon and unit.visibility=='normal' and unit.qty_available>0">
 		    		<div class="alert alert-success text-center"><span t-esc="int(unit.qty_available)"/> Left</div>
 		    	</t>
     			 <div t-field="unit.real_estate_description" class="oe_structure" id="development-description" />
@@ -437,7 +437,7 @@
 								<t t-if="website.re_sold_ribbon and unit.visibility=='aside'">
 		    			 	 		<div class="re-corner-ribbon top-right sticky bg-warning shadow">Aside</div>
 		    			 	 	</t>
-								<t t-if="website.re_stock_ribbon and unit.visibility=='normal'">
+								<t t-if="website.re_stock_ribbon and unit.visibility=='normal' and unit.qty_available>0">
 		    			 	 		<div class="re-corner-ribbon top-right sticky bg-success shadow"><span t-esc="int(unit.qty_available)"/> Left</div>
 		    			 	 	</t>
 		    			 	 	<h2 class="card-title " t-esc="unit.name" />
