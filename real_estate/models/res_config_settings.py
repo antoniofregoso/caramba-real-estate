@@ -16,6 +16,6 @@ class ResConfigSettings(models.TransientModel):
                                      ,related='website_id.re_pagination', readonly=False)
     re_map_type = fields.Selection([('ROADMAP', 'RoadMap'),('TERRAIN', 'Terrain'),('SATELLITE', 'Satellite'),('HYBRID', 'Hybrid')],related='website_id.re_map_type'
                                     , default='ROADMAP', readonly=False)
-    re_map_color = fields.Selection([('-', 'Default'),('lightMonoMap', 'Default'),('cupertinoMap', 'Cupertino'),('retroMap', 'Retro'),('cobaltMap', 'Cobalt'),('flatMap', 'Flat'),('blueMap', 'Blue'),('lillaMap', 'Lilla'),('carMap', 'Car'),('bwMap', 'Black & White')]
+    re_map_color = fields.Selection([('-', 'Default'),('lightMonoMap', 'Default'),('cupertinoMap', 'Cupertino'),('retroMap', 'Retro'),('cobaltMap', 'Cobalt'),('flatMap', 'Flat'),('blueMap', 'Blue'),('lillaMap', 'Lilla'),('carMap', 'Caramello'),('bwMap', 'Black & White')]
                                     ,related='website_id.re_map_color', readonly=False)
     re_map_pin_style = fields.Selection([('-','Default'),('flat','Flat')],related='website_id.re_map_pin_style', readonly=False) 

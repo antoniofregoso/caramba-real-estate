@@ -14,5 +14,5 @@ class Website(models.Model):
     re_navigation = fields.Boolean('Navigation', help='Add navigation arrows', default=False)
     re_pagination = fields.Selection([('none', 'None'), ('dots', 'Dots'), ('numbered', 'Numbered'), ('progress', 'Progress'), ('fraction', 'Fraction'), ('scrollbar', 'Scrollbar')], String='Pagination', default='numbered', required=True)
     re_map_type = fields.Selection([('ROADMAP', 'RoadMap'),('TERRAIN', 'Terrain'),('SATELLITE', 'Satellite'),('HYBRID', 'Hybrid')], string="Map Type",  default='ROADMAP', required=True)
-    re_map_color = fields.Selection([('-', 'Default'),('lightMonoMap', 'Light Mono'),('cupertinoMap', 'Cupertino'),('retroMap', 'Retro'),('cobaltMap', 'Cobalt'),('flatMap', 'Flat'),('blueMap', 'Blue'),('lillaMap', 'Lilla'),('carMap', 'Car'),('bwMap', 'Black & White')], string='Map Color', default='-', required=True)
+    re_map_color = fields.Selection([('-', 'Default'),('lightMonoMap', 'Light Mono'),('cupertinoMap', 'Cupertino'),('retroMap', 'Retro'),('cobaltMap', 'Cobalt'),('flatMap', 'Flat'),('blueMap', 'Blue'),('lillaMap', 'Lilla'),('carMap', 'Caramello'),('bwMap', 'Black & White')], string='Map Color', default='-', required=True)
     re_map_pin_style = fields.Selection([('-','Default'),('flat','Flat')], string='Marker Style', default='-', required=True) 
