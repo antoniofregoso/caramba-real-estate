@@ -14,6 +14,7 @@ class WebsiteRealEstate(http.Controller):
         development = request.env['real_estate.development'].sudo().browse(development.id)
         values = {
             'development':development,
+            'main_object':development,
             'web_values': {
                 'rent': _('For Rent'),
                 'sale': _('For Sale'),
@@ -39,6 +40,7 @@ class WebsiteRealEstate(http.Controller):
         values = {
             'development':development,
             'unit': unit,
+            'main_object':unit,
             'web_values': {
                 'rent': _('For Rent'),
                 'sale': _('For Sale'),

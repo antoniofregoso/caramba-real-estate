@@ -246,7 +246,6 @@
                        				<field name="delivery_date"/>
                 					<field name="immediate_delivery"/>
                 					<field name="user_id"/>
-                					<field name="website_published"/>
                 				</group>
                                 <group>
                                     <button

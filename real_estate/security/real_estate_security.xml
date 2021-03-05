@@ -22,7 +22,7 @@
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
          <field name="category_id" ref="base.module_real_estate"/>
     </record>
-    
+
     <record id="real_estate_development_public" model="ir.rule">
         <field name="name">Real Estate Develop: Public</field>
         <field name="model_id" ref="real_estate.model_real_estate_development"/>
@@ -40,3 +40,5 @@
 
 
 </odoo>
+
+
