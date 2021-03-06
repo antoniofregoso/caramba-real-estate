@@ -81,6 +81,12 @@ class RealEstateDevelopment(models.Model):
     price_from = fields.Float('From')
     price_to = fields.Float('To')
     currency_id = fields.Many2one('res.currency', required=True)
+    
+
+    @api.depends('company_id')
+    def _compute_currency_id(self):
+        main_company = self.env['res.company']._get_main_company()
+        self.currency_id =  main_company.currency_id.id
        
     def _expand_states(self, states, domain, order):
         return ['draft', 'onpresale', 'onsale', 'sold', 'stopped']
